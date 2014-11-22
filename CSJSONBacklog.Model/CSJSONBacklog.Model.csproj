@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Issues\Issue.cs" />
+    <Compile Include="Issues\QueryIssueParameters.cs" />
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Projects\CustomField.cs" />
     <Compile Include="Space\Group.cs" />

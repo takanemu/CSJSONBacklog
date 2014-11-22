@@ -3,6 +3,7 @@
 using System;
 using System.IO;
 using System.Net;
+using System.Net.Cache;
 using System.Text;
 
 namespace CSJSONBacklog.Communicator
@@ -20,25 +21,37 @@ namespace CSJSONBacklog.Communicator
 
         public string GetJson(string uri)
         {
-            var result = string.Empty;
+            string result = string.Empty;
+            Stream stream = null;
 
             try
             {
-                WebRequest request = WebRequest.Create(uri);
-                WebResponse ws = request.GetResponse();
+                var httpWReq = (HttpWebRequest)WebRequest.Create(uri);
+                httpWReq.Method = "GET";
+                httpWReq.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
+                httpWReq.KeepAlive = true;
 
-                Stream stream = ws.GetResponseStream();
-                if (stream == null) { return string.Empty; }
-                
-                using (var s = new StreamReader(stream, Encoding.UTF8))
+                var httpWResp = (HttpWebResponse)httpWReq.GetResponse();
+                stream = httpWResp.GetResponseStream();
+                if (stream != null)
                 {
-                    result = s.ReadToEnd();
+                    using (var sr = new StreamReader(stream, Encoding.UTF8))
+                    {
+                        stream = null;
+                        result = sr.ReadToEnd();
+                    }
                 }
+
+                httpWResp.Close();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
                 throw;
+            }
+            finally
+            {
+                if (stream != null) { stream.Dispose(); }
             }
 
             return result;

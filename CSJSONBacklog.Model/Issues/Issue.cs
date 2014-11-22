@@ -43,7 +43,7 @@ namespace CSJSONBacklog.Model.Issues
 
         public override string ToString()
         {
-            return string.Format("Issue: {0}({1})", Summary, Status);
+            return string.Format("Issue: {0} {1}({2})", IssueKey, Summary, Status);
         }
     }
 
@@ -166,5 +166,12 @@ namespace CSJSONBacklog.Model.Issues
         {
             return string.Format("Star: {0}(Presenter: {1})", Title, Presenter);
         }
+    }
+
+
+
+    public class CountValue
+    {
+        public int Count { get; set; }
     }
 }

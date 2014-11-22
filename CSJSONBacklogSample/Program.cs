@@ -3,6 +3,7 @@
 using System.Diagnostics;
 using System.Linq;
 using CSJSONBacklog.Communicator;
+using CSJSONBacklog.Model.Issues;
 
 namespace CSJSONBacklogSample
 {
@@ -22,13 +23,27 @@ namespace CSJSONBacklogSample
 
             foreach (var project in projects)
             {
-                Debug.WriteLine(project);
-
                 var issueCommunicator = new IssueCommunicator(spaceName, apiKey);
-                var issues = issueCommunicator.GetIssues(project.Id).ToList();
-                foreach (var issue in issues)
+                var count = issueCommunicator.GetCountIssue(project.Id);
+
+                Debug.WriteLine(project + " " + count);
+
+                var param = new QueryIssueParameters
                 {
-                    Debug.WriteLine(issue);
+                    ProjectId = project.Id,
+                    ParentChild = ParentChild.All,
+                    Offset = 0,
+                    Count = 100,// per 100 max
+                    Order = Order.Asc,
+                    Sort = Sort.Created
+                };
+                for (param.Offset = 0; param.Offset < count; param.Offset += 100)
+                {
+                    var issues = issueCommunicator.GetIssues(param).ToList();
+                    foreach (var issue in issues)
+                    {
+                        Debug.WriteLine(issue);
+                    }
                 }
             }
         }
