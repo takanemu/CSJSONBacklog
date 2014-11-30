@@ -1,5 +1,6 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using CSJSONBacklog.Communicator;
@@ -30,7 +31,7 @@ namespace CSJSONBacklogSample
 
                 var param = new QueryIssueParameters
                 {
-                    ProjectId = project.Id,
+                    ProjectIds = new List<int> { project.Id },
                     ParentChild = ParentChild.All,
                     Offset = 0,
                     Count = 100,// per 100 max

@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using CSJSONBacklog.API;
 using CSJSONBacklog.Model.Issues;
 using Newtonsoft.Json;
@@ -28,10 +29,10 @@ namespace CSJSONBacklog.Communicator
 
         public IEnumerable<Issue> GetIssues(QueryIssueParameters param)
         {
-            //TODO:set query from param
-            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues?apiKey={1}&projectId[]={2}&offset={3}&count={4}&order={5}&sort={6}",
-                Spacename, ApiKey, param.ProjectId, param.Offset, param.Count, param.Order, param.Sort);
-           // Debug.WriteLine("GetIssues: {0}", uri);
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues?apiKey={1}&{2}",
+                Spacename,
+                ApiKey,
+                param.GetParametersForAPI());
 
             var json = GetJson(uri);
 

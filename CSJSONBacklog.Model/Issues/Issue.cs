@@ -57,7 +57,7 @@ namespace CSJSONBacklog.Model.Issues
 
         public override string ToString()
         {
-            return string.Format("IssueType: {0}", Name);
+            return string.Format("IssueType: {0}({1})", Name, Id);
         }
     }
 
