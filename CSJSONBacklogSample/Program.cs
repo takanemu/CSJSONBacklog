@@ -16,7 +16,7 @@ namespace CSJSONBacklogSample
             const string apiKey = @"yourApiKey";// TODO:must change!
 
             var projectCommunicator = new ProjectCommunicator(spaceName, apiKey);
-            var projects = projectCommunicator.GetProjects().ToList();
+            var projects = projectCommunicator.GetProjectList().ToList();
             foreach (var project in projects)
             {
                 Debug.WriteLine(project);
