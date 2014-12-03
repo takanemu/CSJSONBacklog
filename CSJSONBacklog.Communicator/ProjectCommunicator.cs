@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CSJSONBacklog.Model.Issues;
 using CSJSONBacklog.Model.Projects;
 using CSJSONBacklog.API;
+using CSJSONBacklog.Model.Space;
 
 namespace CSJSONBacklog.Communicator
 {
@@ -13,72 +14,82 @@ namespace CSJSONBacklog.Communicator
             : base(spacename, apiKey)
         {}
 
-        public object GetListofRecentlyViewedProjects()
-        {
-            throw new System.NotImplementedException();
-        }
 
+
+        #region Project
+        /// <summary>
+        /// Returns list of projects.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-projects"/>
         public IEnumerable<Project> GetProjectList()
         {
             return GetT<IEnumerable<Project>>(string.Format("https://{0}.backlog.jp/api/v2/projects?apiKey={1}", Spacename, ApiKey));
         }
 
-        public void AddProject()
+        public Project GetProject(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        public Project AddProject(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        public Project UpdateProject(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        public Project DeleteProject(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        #endregion Project
+
+
+
+        #region Project User
+        /// <summary>
+        /// Returns list of project members.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-project-users"/>
+        public IEnumerable<User> GetProjectUserList(string projectIdOrKey)
         {
-            throw new System.NotImplementedException();
+            return GetT<IEnumerable<User>>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/users?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
         }
 
-        public void GetProject()
+        public User AddProjectUser(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        public User DeleteProjectUser(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        #endregion Project User
+
+
+        #region Project Administrator
+        /// <summary>
+        /// Returns list of users who has Project Administrator role
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-project-adminnistrators"/>
+        public IEnumerable<User> GetProjectAdministratorList(string projectIdOrKey)
         {
-            throw new System.NotImplementedException();
+            return GetT<IEnumerable<User>>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/administrators?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
         }
 
-        public void UpdateProject()
-        {
-            throw new System.NotImplementedException();
-        }
+        public User GetProjectAdministrator(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        public User AddProjectAdministrator(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        public User DeleteProjectAdministrator(string projectIdOrKey) { throw new System.NotImplementedException(); }
+        #endregion Project Administrator
 
-        public void DeleteProject()
-        {
-            throw new System.NotImplementedException();
-        }
 
+
+        #region misc
+        /// <summary>
+        /// Downloads project icon.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-project-icon"/>
         public byte[] GetProjectIcon()
         {
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns recent update in the project.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-project-activities"/>
         public object GetProjectRecentUpdate()
         {
             throw new System.NotImplementedException();
         }
 
-        public void AddProjectUser()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public object GetProjectUserList()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteProjectUser()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void AddProjectAdministrator()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public object GetProjectAdministratorList()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public void DeleteProjectAdministrator()
+        /// <summary>
+        /// Returns list of projects which the user viewed recently.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-user-recentlyviewedprojects"/>
+        public object GetListofRecentlyViewedProjects()
         {
             throw new System.NotImplementedException();
         }
@@ -101,9 +112,14 @@ namespace CSJSONBacklog.Communicator
             return GetT<IEnumerable<IssueType>>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/issueTypes?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
         }
 
-        public object GetProjectDiskUsage()
+        /// <summary>
+        /// Returns information about project disk usage.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-project-diskusage"/>
+        public DiskUsage GetProjectDiskUsage(string projectIdOrKey)
         {
-            throw new System.NotImplementedException();
+            return GetT<DiskUsage>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/diskUsage?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
         }
+        #endregion misc
     }
 }

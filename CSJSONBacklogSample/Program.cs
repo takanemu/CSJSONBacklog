@@ -39,6 +39,23 @@ namespace CSJSONBacklogSample
             {
                 Debug.WriteLine(project);
 
+                // disk usage
+                var usage = projectCommunicator.GetProjectDiskUsage(project.ProjectKey);
+                Debug.WriteLine("\t" + usage);
+
+                // project user
+                var users = projectCommunicator.GetProjectUserList(project.ProjectKey);
+                foreach (var user in users)
+                {
+                    Debug.WriteLine("\t" + user);
+                }
+
+                var admins = projectCommunicator.GetProjectAdministratorList(project.ProjectKey);
+                foreach (var user in admins)
+                {
+                    Debug.WriteLine("\t" + user);
+                }
+
                 // issue types
                 var issueTypes = projectCommunicator.GetIssueTypeList(project.ProjectKey);
                 foreach (var issueType in issueTypes)
