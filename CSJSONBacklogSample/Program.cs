@@ -1,5 +1,6 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -21,6 +22,13 @@ namespace CSJSONBacklogSample
             foreach (var project in projects)
             {
                 Debug.WriteLine(project);
+                
+                // custom fields
+                var customFieldList = projectCommunicator.GetCustomFieldList(project.ProjectKey);
+                foreach (var customField in customFieldList)
+                {
+                    Debug.WriteLine(customField);
+                }
             }
 
             // per project

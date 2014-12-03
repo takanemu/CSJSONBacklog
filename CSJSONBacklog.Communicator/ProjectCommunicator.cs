@@ -89,6 +89,21 @@ namespace CSJSONBacklog.Communicator
             throw new System.NotImplementedException();
         }
 
+        /// <summary>
+        /// Returns list of Custom Fields in the project.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-customfields"/>
+        public IEnumerable<CustomField> GetCustomFieldList(string projectIdOrKey)
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/customFields?apiKey={2}", Spacename, projectIdOrKey, ApiKey);
+
+            var json = GetJson(uri);
+
+            var list = JsonConvert.DeserializeObject<List<CustomField>>(json);
+
+            return list;
+        }
+
         public object GetProjectDiskUsage()
         {
             throw new System.NotImplementedException();

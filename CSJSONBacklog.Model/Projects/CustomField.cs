@@ -1,7 +1,6 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
 using System.Collections.Generic;
-using CSJSONBacklog.Model.Issues;
 
 namespace CSJSONBacklog.Model.Projects
 {
@@ -12,8 +11,13 @@ namespace CSJSONBacklog.Model.Projects
         public string Name { get; set; }
         public string Description { get; set; }
         public bool Required { get; set; }
-        public List<IssueType> ApplicableIssueTypes { get; set; }
-        public bool AllowAddItem { get; set; }
+        public List<int> ApplicableIssueTypes { get; set; }
+        public string Min { get; set; }
+        public string Max { get; set; }
+        public string InitialValue { get; set; }
+        public string Unit { get; set; }
+        public bool? AllowAddItem { get; set; }
+        public bool? AllowInput { get; set; }
         public List<CustomFieldItem> Items { get; set; }
 
         public override string ToString()
@@ -24,7 +28,6 @@ namespace CSJSONBacklog.Model.Projects
 
     public enum CustomFieldType
     {
-        None = 0,
         Text = 1,
         Sentence = 2,
         Number = 3,
@@ -43,7 +46,7 @@ namespace CSJSONBacklog.Model.Projects
 
         public override string ToString()
         {
-            return string.Format("CustomFieldItem: {0}({1})", Name, Id);
+            return string.Format("CustomFieldItem: {0}({1}) DisplayOrder: {2}", Name, Id, DisplayOrder);
         }
     }
 }

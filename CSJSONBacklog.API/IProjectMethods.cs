@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿/* See the file "LICENSE" for the full license governing this code. */
+
+using System.Collections.Generic;
 using CSJSONBacklog.Model.Projects;
 
 namespace CSJSONBacklog.API
@@ -24,6 +26,12 @@ namespace CSJSONBacklog.API
         void AddProjectAdministrator();
         object GetProjectAdministratorList();
         void DeleteProjectAdministrator();
+
+        /// <summary>
+        /// Returns list of Custom Fields in the project.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-customfields"/>
+        IEnumerable<CustomField> GetCustomFieldList(string projectIdOrKey);
 
         /// <summary>
         /// Returns information about project disk usage.
