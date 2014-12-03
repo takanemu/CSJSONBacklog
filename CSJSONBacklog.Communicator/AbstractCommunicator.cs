@@ -1,11 +1,13 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Cache;
 using System.Text;
 using CSJSONBacklog.Model;
+using Newtonsoft.Json;
 
 namespace CSJSONBacklog.Communicator
 {
@@ -18,6 +20,13 @@ namespace CSJSONBacklog.Communicator
         {
             Spacename = spacename;
             ApiKey = apiKey;
+        }
+
+        protected T GetT<T>(string uri)
+        {
+            var json = GetJson(uri);
+            var list = JsonConvert.DeserializeObject<T>(json);
+            return list;
         }
 
         public string GetJson(string uri)

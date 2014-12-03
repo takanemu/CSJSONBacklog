@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using CSJSONBacklog.API;
 using CSJSONBacklog.Model.Issues;
-using Newtonsoft.Json;
 
 namespace CSJSONBacklog.Communicator
 {
@@ -13,21 +12,14 @@ namespace CSJSONBacklog.Communicator
             : base(spacename, apiKey)
         {}
 
-        private int _CountIssue(string uri)
-        {
-            var json = GetJson(uri);
-            var issueCount = JsonConvert.DeserializeObject<CountValue>(json);
-            return issueCount == null ? 0 : issueCount.Count;
-        }
-
         /// <summary>
         /// Returns number of issues.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues-count"/>
         public int GetIssuesCount(int projectId)
         {
-            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues/count?apiKey={1}&projectId[]={2}", Spacename, ApiKey, projectId);
-            return _CountIssue(uri);
+            var issueCount = GetT<CountValue>(string.Format("https://{0}.backlog.jp/api/v2/issues/count?apiKey={1}&projectId[]={2}", Spacename, ApiKey, projectId));
+            return issueCount == null ? 0 : issueCount.Count;
         }
 
         /// <summary>
@@ -36,20 +28,18 @@ namespace CSJSONBacklog.Communicator
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues-count"/>
         public int GetIssuesCount(IEnumerable<int> projectIds)
         {
-            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues/count?apiKey={1}&{2}", Spacename, ApiKey, MultiParametersForAPI(@"projectId", projectIds));
-            return _CountIssue(uri);
+            var issueCount = GetT<CountValue>(string.Format("https://{0}.backlog.jp/api/v2/issues/count?apiKey={1}&{2}", Spacename, ApiKey, MultiParametersForAPI(@"projectId", projectIds)));
+            return issueCount == null ? 0 : issueCount.Count;
         }
 
+        /// <summary>
+        /// Returns list of issues.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues"/>
         public IEnumerable<Issue> GetIssues(QueryIssueParameters param)
         {
-            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues?apiKey={1}&{2}",
-                Spacename,
-                ApiKey,
-                param.GetParametersForAPI());
-
-            var json = GetJson(uri);
-            var list = JsonConvert.DeserializeObject<List<Issue>>(json);
-            return list ?? new List<Issue>();
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues?apiKey={1}&{2}", Spacename, ApiKey, param.GetParametersForAPI());
+            return GetT<IEnumerable<Issue>>(uri);
         }
     }
 }

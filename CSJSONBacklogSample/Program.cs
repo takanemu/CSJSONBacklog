@@ -39,11 +39,18 @@ namespace CSJSONBacklogSample
             {
                 Debug.WriteLine(project);
 
+                // issue types
+                var issueTypes = projectCommunicator.GetIssueTypeList(project.ProjectKey);
+                foreach (var issueType in issueTypes)
+                {
+                    Debug.WriteLine("\t" + issueType);
+                }
+
                 // custom fields
                 var customFieldList = projectCommunicator.GetCustomFieldList(project.ProjectKey);
                 foreach (var customField in customFieldList)
                 {
-                    Debug.WriteLine(customField);
+                    Debug.WriteLine("\t" + customField);
                 }
             }
 
@@ -54,7 +61,7 @@ namespace CSJSONBacklogSample
         {
             var count = issueCommunicator.GetIssuesCount(project.Id);
 
-            Debug.WriteLine(project + " " + count);
+            Debug.WriteLine("\t" + project + " " + count);
 
             // issues in a project
             var param = new QueryIssueParameters
@@ -71,7 +78,7 @@ namespace CSJSONBacklogSample
                 var issues = issueCommunicator.GetIssues(param).ToList();
                 foreach (var issue in issues)
                 {
-                    Debug.WriteLine(issue);
+                    Debug.WriteLine("\t" + issue);
                 }
             }
         }

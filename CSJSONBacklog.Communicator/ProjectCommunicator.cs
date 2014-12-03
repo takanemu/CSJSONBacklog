@@ -1,9 +1,9 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
 using System.Collections.Generic;
+using CSJSONBacklog.Model.Issues;
 using CSJSONBacklog.Model.Projects;
 using CSJSONBacklog.API;
-using Newtonsoft.Json;
 
 namespace CSJSONBacklog.Communicator
 {
@@ -20,13 +20,7 @@ namespace CSJSONBacklog.Communicator
 
         public IEnumerable<Project> GetProjectList()
         {
-            var uri = string.Format("https://{0}.backlog.jp/api/v2/projects?apiKey={1}", Spacename, ApiKey);
-
-            var json = GetJson(uri);
-
-            var list = JsonConvert.DeserializeObject<List<Project>>(json);
-
-            return list;
+            return GetT<IEnumerable<Project>>(string.Format("https://{0}.backlog.jp/api/v2/projects?apiKey={1}", Spacename, ApiKey));
         }
 
         public void AddProject()
@@ -95,13 +89,16 @@ namespace CSJSONBacklog.Communicator
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-customfields"/>
         public IEnumerable<CustomField> GetCustomFieldList(string projectIdOrKey)
         {
-            var uri = string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/customFields?apiKey={2}", Spacename, projectIdOrKey, ApiKey);
+            return GetT<IEnumerable<CustomField>>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/customFields?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
+        }
 
-            var json = GetJson(uri);
-
-            var list = JsonConvert.DeserializeObject<List<CustomField>>(json);
-
-            return list;
+        /// <summary>
+        /// Returns list of Issue Types in the project.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issuetypes"/>
+        public IEnumerable<IssueType> GetIssueTypeList(string projectIdOrKey)
+        {
+            return GetT<IEnumerable<IssueType>>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/issueTypes?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
         }
 
         public object GetProjectDiskUsage()
