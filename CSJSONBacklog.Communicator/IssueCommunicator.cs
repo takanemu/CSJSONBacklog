@@ -1,8 +1,6 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using CSJSONBacklog.API;
 using CSJSONBacklog.Model.Issues;
 using Newtonsoft.Json;
@@ -15,16 +13,31 @@ namespace CSJSONBacklog.Communicator
             : base(spacename, apiKey)
         {}
 
-        public int GetCountIssue(int projectId)
+        private int _CountIssue(string uri)
+        {
+            var json = GetJson(uri);
+            var issueCount = JsonConvert.DeserializeObject<CountValue>(json);
+            return issueCount == null ? 0 : issueCount.Count;
+        }
+
+        /// <summary>
+        /// Returns number of issues.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues-count"/>
+        public int GetIssuesCount(int projectId)
         {
             var uri = string.Format("https://{0}.backlog.jp/api/v2/issues/count?apiKey={1}&projectId[]={2}", Spacename, ApiKey, projectId);
-            //Debug.WriteLine("GetIssues: {0}", uri);
+            return _CountIssue(uri);
+        }
 
-            var json = GetJson(uri);
-
-            var issueCount = JsonConvert.DeserializeObject<CountValue>(json);
-
-            return issueCount == null ? 0 : issueCount.Count;
+        /// <summary>
+        /// Returns number of issues.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues-count"/>
+        public int GetIssuesCount(IEnumerable<int> projectIds)
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues/count?apiKey={1}&{2}", Spacename, ApiKey, MultiParametersForAPI(@"projectId", projectIds));
+            return _CountIssue(uri);
         }
 
         public IEnumerable<Issue> GetIssues(QueryIssueParameters param)
@@ -35,9 +48,7 @@ namespace CSJSONBacklog.Communicator
                 param.GetParametersForAPI());
 
             var json = GetJson(uri);
-
             var list = JsonConvert.DeserializeObject<List<Issue>>(json);
-
             return list ?? new List<Issue>();
         }
     }

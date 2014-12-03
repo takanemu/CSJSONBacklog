@@ -5,10 +5,11 @@ using System.IO;
 using System.Net;
 using System.Net.Cache;
 using System.Text;
+using CSJSONBacklog.Model;
 
 namespace CSJSONBacklog.Communicator
 {
-    public abstract class AbstractCommunicator : ICommunicator
+    public abstract class AbstractCommunicator : AbstractParameter, ICommunicator
     {
         public string Spacename { get; private set; }
         public string ApiKey { get; private set; }

@@ -15,6 +15,7 @@ namespace CSJSONBacklogSample
             const string spaceName = @"yourSpaceName";// TODO:must change!
             const string apiKey = @"yourApiKey";// TODO:must change!
 
+            // get project list
             var projectCommunicator = new ProjectCommunicator(spaceName, apiKey);
             var projects = projectCommunicator.GetProjectList().ToList();
             foreach (var project in projects)
@@ -22,13 +23,15 @@ namespace CSJSONBacklogSample
                 Debug.WriteLine(project);
             }
 
+            // per project
             foreach (var project in projects)
             {
                 var issueCommunicator = new IssueCommunicator(spaceName, apiKey);
-                var count = issueCommunicator.GetCountIssue(project.Id);
+                var count = issueCommunicator.GetIssuesCount(project.Id);
 
                 Debug.WriteLine(project + " " + count);
 
+                // issues in a project
                 var param = new QueryIssueParameters
                 {
                     ProjectIds = new List<int> { project.Id },

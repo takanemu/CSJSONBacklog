@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace CSJSONBacklog.Model.Issues
 {
-    public class QueryIssueParameters
+    public class QueryIssueParameters : AbstractParameter
     {
         public List<int> ProjectIds = new List<int>();
         public List<IssueType> IssueTypes = new List<IssueType>();
@@ -40,7 +40,7 @@ namespace CSJSONBacklog.Model.Issues
         public string GetParametersForAPI()
         {
             var parameters = string.Format("{0}&offset={1}&count={2}&order={3}&sort={4}&attachment={5}&sharedFile={6}&parentChild={7}&keyword={8}",
-                StringParametersForAPI(@"projectId", ProjectIds),
+                MultiParametersForAPI(@"projectId", ProjectIds),
                 Offset,
                 Count,
                 Order,
@@ -50,15 +50,15 @@ namespace CSJSONBacklog.Model.Issues
                 (int)ParentChild,
                 Keyword);
 
-            parameters += StringParametersForAPI(@"issueTypeId", IssueTypes.Select(x => x.Id));
-            parameters += StringParametersForAPI(@"categoryId", CategoryIds.Select(x => x.Id));
-            parameters += StringParametersForAPI(@"versionId", VersionIds);
-            parameters += StringParametersForAPI(@"milestoneId", MilestoneIds);
-            parameters += StringParametersForAPI(@"statusId", StatusIds);
-            parameters += StringParametersForAPI(@"priorityId", PriorityIds);
-            parameters += StringParametersForAPI(@"assigneeId", PriorityIds);
-            parameters += StringParametersForAPI(@"createdUserId", CreatedUserIds);
-            parameters += StringParametersForAPI(@"resolutionId", ResolutionIds);
+            parameters += MultiParametersForAPI(@"issueTypeId", IssueTypes.Select(x => x.Id));
+            parameters += MultiParametersForAPI(@"categoryId", CategoryIds.Select(x => x.Id));
+            parameters += MultiParametersForAPI(@"versionId", VersionIds);
+            parameters += MultiParametersForAPI(@"milestoneId", MilestoneIds);
+            parameters += MultiParametersForAPI(@"statusId", StatusIds);
+            parameters += MultiParametersForAPI(@"priorityId", PriorityIds);
+            parameters += MultiParametersForAPI(@"assigneeId", PriorityIds);
+            parameters += MultiParametersForAPI(@"createdUserId", CreatedUserIds);
+            parameters += MultiParametersForAPI(@"resolutionId", ResolutionIds);
 
             parameters += StringParametersForAPIDate("createdSince", CreatedSince);
             parameters += StringParametersForAPIDate("createdUntil", CreatedUntil);
@@ -68,30 +68,10 @@ namespace CSJSONBacklog.Model.Issues
             parameters += StringParametersForAPIDate("startDateUntil", StartDateUntil);
             parameters += StringParametersForAPIDate("dueDateSince", DueDateSince);
             parameters += StringParametersForAPIDate("dueDateUntil", DueDateUntil);
-            parameters += StringParametersForAPI(@"id", Ids);
-            parameters += StringParametersForAPI(@"parentIssueId", ParentIssueIds);
+            parameters += MultiParametersForAPI(@"id", Ids);
+            parameters += MultiParametersForAPI(@"parentIssueId", ParentIssueIds);
 
             return parameters;
-        }
-
-        private string StringParametersForAPI(string paramName, IEnumerable<int> paramList)
-        {
-            var parameters = string.Empty;
-
-            var list = paramList as int[] ?? paramList.ToArray();
-            for (var i = 0; i < list.Count(); i++)
-            {
-                parameters += string.Format("{0}[{1}]={2}&", paramName, i, list[i]);
-            }
-
-            return parameters.Count() > 2 ? parameters.Remove(parameters.Length - 1, 1) : string.Empty;
-        }
-
-        private string StringParametersForAPIDate(string paramName, DateTime? date)
-        {
-            return !date.HasValue
-                ? string.Empty
-                : string.Format("&paramName={0}", date.Value.ToString("yyyy-MM-dd"));
         }
     }
 

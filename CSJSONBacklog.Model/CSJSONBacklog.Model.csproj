@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractParameter.cs" />
     <Compile Include="Issues\Issue.cs" />
     <Compile Include="Issues\QueryIssueParameters.cs" />
     <Compile Include="Projects\Project.cs" />

@@ -7,7 +7,16 @@ namespace CSJSONBacklog.API
 {
     public interface IIssueMethods
     {
-        int GetCountIssue(int projectId);
+        /// <summary>
+        /// Returns number of issues.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues-count"/>
+        int GetIssuesCount(IEnumerable<int> projectIds);
+
+        /// <summary>
+        /// Returns list of issues.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues"/>
         IEnumerable<Issue> GetIssues(QueryIssueParameters param);
     }
 }
