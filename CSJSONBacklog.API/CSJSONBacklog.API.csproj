@@ -42,8 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IIssueMethods.cs" />
-    <Compile Include="IProjectMethods.cs" />
+    <Compile Include="IIssueAPI.cs" />
+    <Compile Include="IProjectAPI.cs" />
+    <Compile Include="ISpaceAPI.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

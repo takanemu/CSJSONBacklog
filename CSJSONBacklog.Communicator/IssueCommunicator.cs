@@ -6,7 +6,7 @@ using CSJSONBacklog.Model.Issues;
 
 namespace CSJSONBacklog.Communicator
 {
-    public class IssueCommunicator : AbstractCommunicator, IIssueMethods
+    public class IssueCommunicator : AbstractCommunicator, IIssueAPI
     {
         public IssueCommunicator(string spacename, string apiKey)
             : base(spacename, apiKey)

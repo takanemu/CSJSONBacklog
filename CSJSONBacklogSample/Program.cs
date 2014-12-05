@@ -14,7 +14,7 @@ namespace CSJSONBacklogSample
         static void Main(string[] args)
         {
             const string spaceName = @"yourSpaceName";// TODO:must change!
-            const string apiKey = @"yourApiKey";// TODO:must change!
+            const string apiKey = @"yourSpaceName";// TODO:must change!
 
             // Dump all project in space
             var projects = DumpProjects(spaceName, apiKey);
@@ -69,6 +69,15 @@ namespace CSJSONBacklogSample
                 {
                     Debug.WriteLine("\t" + customField);
                 }
+
+#if false // TODO:{"errors":[{"message":"Authentication failure.","code":11,"moreInfo":""}]}
+                // git repositories
+                var repos = projectCommunicator.GetListofGitRepositories(project.ProjectKey);
+                foreach (var gitRepository in repos)
+                {
+                    Debug.WriteLine("\t" + gitRepository);
+                }
+#endif
             }
 
             return projects;

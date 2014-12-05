@@ -52,6 +52,7 @@
     <Compile Include="IssueCommunicator.cs" />
     <Compile Include="ProjectCommunicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SpaceCommunicator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CSJSONBacklog.API\CSJSONBacklog.API.csproj">

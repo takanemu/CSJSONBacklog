@@ -5,7 +5,7 @@ using CSJSONBacklog.Model.Issues;
 
 namespace CSJSONBacklog.API
 {
-    public interface IIssueMethods
+    public interface IIssueAPI
     {
         /// <summary>
         /// Returns number of issues.

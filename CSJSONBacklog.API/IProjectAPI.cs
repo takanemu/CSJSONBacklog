@@ -7,7 +7,7 @@ using CSJSONBacklog.Model.Space;
 
 namespace CSJSONBacklog.API
 {
-    public interface IProjectMethods
+    public interface IProjectAPI
     {
         #region Project
         /// <summary>
@@ -79,6 +79,17 @@ namespace CSJSONBacklog.API
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-project-diskusage"/>
         DiskUsage GetProjectDiskUsage(string projectIdOrKey);
+
+        IEnumerable<Issue> GetListofRecentlyViewedIssues(string projectIdOrKey);
+        IEnumerable<Project> GetListofRecentlyViewedProjects(string projectIdOrKey);
+        IEnumerable<WikiPage> GetListofRecentlyViewedWikis(string projectIdOrKey);
+        IEnumerable<Group> GetListofGroups(string projectIdOrKey);
+
+        /// <summary>
+        /// Returns list of Git repositories.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-git-repositories"/>
+        IEnumerable<GitRepository> GetListofGitRepositories(string projectIdOrKey);
         #endregion misc
     }
 }

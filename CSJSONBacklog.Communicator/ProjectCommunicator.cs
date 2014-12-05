@@ -8,7 +8,7 @@ using CSJSONBacklog.Model.Space;
 
 namespace CSJSONBacklog.Communicator
 {
-    public class ProjectCommunicator : AbstractCommunicator, IProjectMethods
+    public class ProjectCommunicator : AbstractCommunicator, IProjectAPI
     {
         public ProjectCommunicator(string spacename, string apiKey)
             : base(spacename, apiKey)
@@ -119,6 +119,35 @@ namespace CSJSONBacklog.Communicator
         public DiskUsage GetProjectDiskUsage(string projectIdOrKey)
         {
             return GetT<DiskUsage>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/diskUsage?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
+        }
+
+        public IEnumerable<Issue> GetListofRecentlyViewedIssues(string projectIdOrKey)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<Project> GetListofRecentlyViewedProjects(string projectIdOrKey)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<WikiPage> GetListofRecentlyViewedWikis(string projectIdOrKey)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<Group> GetListofGroups(string projectIdOrKey)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        /// <summary>
+        /// Returns list of Git repositories.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-git-repositories"/>
+        public IEnumerable<GitRepository> GetListofGitRepositories(string projectIdOrKey)
+        {
+            return GetT<IEnumerable<GitRepository>>(string.Format("https://{0}.backlog.jp/api/v2/git/repositories?apiKey={1}?projectIdOrKey={2}", Spacename, ApiKey, projectIdOrKey));
         }
         #endregion misc
     }
