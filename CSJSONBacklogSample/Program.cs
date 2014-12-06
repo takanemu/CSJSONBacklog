@@ -1,5 +1,6 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,22 +10,54 @@ using CSJSONBacklog.Model.Projects;
 
 namespace CSJSONBacklogSample
 {
+    /// <summary>
+    /// Sample Program
+    /// </summary>
     class Program
     {
+        /// <summary>
+        /// Main
+        /// </summary>
         static void Main(string[] args)
         {
-            const string spaceName = @"yourSpaceName";// TODO:must change!
-            const string apiKey = @"yourSpaceName";// TODO:must change!
+            string spaceName = Properties.Settings.Default.SpaceName;// must change!
+            string apiKey = Properties.Settings.Default.APIKey;// must change!
 
+#if true
             // Dump all project in space
-            var projects = DumpProjects(spaceName, apiKey);
-            
+            var projects = DumpProjects(spaceName, apiKey).ToList();
+
             // Dump issues in a project
             var issueCommunicator = new IssueCommunicator(spaceName, apiKey);
             foreach (var project in projects)
             {
                 DumpIssues(issueCommunicator, project);
             }
+#else
+            var projectCommunicator = new ProjectCommunicator(spaceName, apiKey);
+            var projects = projectCommunicator.GetProjectList().ToList();
+            var proj = projects.FirstOrDefault(x => x.ProjectKey.Equals("SND"));
+
+            var issueCommunicator = new IssueCommunicator(spaceName, apiKey);
+            var count = issueCommunicator.GetIssuesCount(proj.Id);
+
+            Debug.WriteLine("\t" + proj + " " + count);
+
+            // issues in a project
+            var param = new QueryIssueParameters
+            {
+                ProjectIds = new List<int> { proj.Id },
+                ParentChild = ParentChild.All,
+                Offset = 0,
+                Count = 100,// per 100 max
+                Order = Order.Asc,
+                Sort = Sort.Created
+            };
+            var issue = issueCommunicator.GetIssues(param).FirstOrDefault();
+
+            issue.description += " Update by api @" + DateTime.Now;
+            issueCommunicator.UpdateIssue(issue);
+#endif
         }
 
         /// <summary>

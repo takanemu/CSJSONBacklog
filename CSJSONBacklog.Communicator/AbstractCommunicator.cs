@@ -1,13 +1,10 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Net;
-using System.Net.Cache;
-using System.Text;
+using CSJSONBacklog.Communicator.Serializers;
 using CSJSONBacklog.Model;
 using Newtonsoft.Json;
+using RestSharp;
 
 namespace CSJSONBacklog.Communicator
 {
@@ -22,49 +19,54 @@ namespace CSJSONBacklog.Communicator
             ApiKey = apiKey;
         }
 
-        protected T GetT<T>(string uri)
+        protected string BaseUri
         {
-            var json = GetJson(uri);
-            var list = JsonConvert.DeserializeObject<T>(json);
-            return list;
+            get { return string.Format("https://{0}.backlog.jp/", Spacename); }
         }
 
-        public string GetJson(string uri)
+        protected T GetT<T>(string uri)
         {
-            string result = string.Empty;
-            Stream stream = null;
-
-            try
+            var client = new RestClient(uri);
+            var request = new RestRequest(Method.GET) 
             {
-                var httpWReq = (HttpWebRequest)WebRequest.Create(uri);
-                httpWReq.Method = "GET";
-                httpWReq.CachePolicy = new RequestCachePolicy(RequestCacheLevel.NoCacheNoStore);
-                httpWReq.KeepAlive = true;
+                RequestFormat = DataFormat.Json,
+            };
 
-                var httpWResp = (HttpWebResponse)httpWReq.GetResponse();
-                stream = httpWResp.GetResponseStream();
-                if (stream != null)
-                {
-                    using (var sr = new StreamReader(stream, Encoding.UTF8))
-                    {
-                        stream = null;
-                        result = sr.ReadToEnd();
-                    }
-                }
-
-                httpWResp.Close();
-            }
-            catch (Exception e)
+            var response = client.Execute(request);
+            var content = response.Content;
+            
+            var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
+            if (errors.HasError)
             {
-                Console.WriteLine(e.Message);
-                throw;
-            }
-            finally
-            {
-                if (stream != null) { stream.Dispose(); }
+                throw new Exception(errors.ToString());
             }
 
-            return result;
+            return JsonConvert.DeserializeObject<T>(content);
+        }
+
+        protected T PatchT<T>(string resource, T value)
+        {
+            var client = new RestClient(BaseUri);
+            var request = new RestRequest(Method.PATCH)
+            {
+                RequestFormat = DataFormat.Json,
+                Resource = resource,
+            };
+            request.AddQueryParameter("apiKey", ApiKey);
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.JsonSerializer = new PatchJsonSerializer { ContentType = @"application/json" };
+            request.AddJsonBody(value);
+
+            var response = client.Execute(request);
+            var content = response.Content;
+
+            var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
+            if (errors.HasError)
+            {
+                throw new Exception(errors.ToString());
+            }
+
+            return JsonConvert.DeserializeObject<T>(content);
         }
     }
 }

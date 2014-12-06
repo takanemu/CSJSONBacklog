@@ -38,6 +38,9 @@
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,10 +51,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractCommunicator.cs" />
+    <Compile Include="ContractResolvers\PatchContractResolver.cs" />
     <Compile Include="ICommunicator.cs" />
     <Compile Include="IssueCommunicator.cs" />
     <Compile Include="ProjectCommunicator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serializers\PatchJsonSerializer.cs" />
     <Compile Include="SpaceCommunicator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,5 @@ namespace CSJSONBacklog.Communicator
     {
         string Spacename { get; }
         string ApiKey { get; }
-        string GetJson(string uri);
     }
 }

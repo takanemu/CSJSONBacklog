@@ -50,8 +50,8 @@ namespace CSJSONBacklog.Model.Issues
                 (int)ParentChild,
                 Keyword);
 
-            parameters += MultiParametersForAPI(@"issueTypeId", IssueTypes.Select(x => x.Id));
-            parameters += MultiParametersForAPI(@"categoryId", CategoryIds.Select(x => x.Id));
+            parameters += MultiParametersForAPI(@"issueTypeId", IssueTypes.Select(x => x.id));
+            parameters += MultiParametersForAPI(@"categoryId", CategoryIds.Select(x => x.id));
             parameters += MultiParametersForAPI(@"versionId", VersionIds);
             parameters += MultiParametersForAPI(@"milestoneId", MilestoneIds);
             parameters += MultiParametersForAPI(@"statusId", StatusIds);
