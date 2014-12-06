@@ -34,14 +34,22 @@ namespace CSJSONBacklog.Communicator
 
             var response = client.Execute(request);
             var content = response.Content;
-            
-            var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
-            if (errors.HasError)
+
+            T result = default(T);
+            try
             {
-                throw new Exception(errors.ToString());
+                result = JsonConvert.DeserializeObject<T>(content);
+            }
+            catch
+            {
+                var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
+                if (errors.HasError)
+                {
+                    throw new Exception(errors.ToString());
+                }
             }
 
-            return JsonConvert.DeserializeObject<T>(content);
+            return result;
         }
 
         protected T PatchT<T>(string resource, T value)
@@ -60,13 +68,21 @@ namespace CSJSONBacklog.Communicator
             var response = client.Execute(request);
             var content = response.Content;
 
-            var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
-            if (errors.HasError)
+            T result = default(T);
+            try
             {
-                throw new Exception(errors.ToString());
+                result = JsonConvert.DeserializeObject<T>(content);
+            }
+            catch
+            {
+                var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
+                if (errors.HasError)
+                {
+                    throw new Exception(errors.ToString());
+                }
             }
 
-            return JsonConvert.DeserializeObject<T>(content);
+            return result;
         }
     }
 }
