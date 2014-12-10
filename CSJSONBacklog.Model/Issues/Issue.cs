@@ -37,16 +37,16 @@ namespace CSJSONBacklog.Model.Issues
         public string created { get; set; }
         public User updatedUser { get; set; }
         public string updated { get; set; }
-        public List<CustomField> customFields { get; set; }
+        public List<CustomFieldInIssue> customFields { get; set; }
         public List<Attachment> attachments { get; set; }
         public List<SharedFile> sharedFiles { get; set; }
         public List<Star> stars { get; set; }
         
-        public override string ToString()
-        {
-            return string.Format("Issue: {0} {1}({2})", issueKey, summary, status);
-        }
+        public int issueTypeId { get { return issueType.id; } }
+        public int priorityId { get { return priority.id; } }
+        public int resolutionId { get { return resolution.id; } }
 
+        public string comment { get; set; }
 
         /// <summary>
         /// return properties for Patch
@@ -57,12 +57,57 @@ namespace CSJSONBacklog.Model.Issues
         {
             return new List<string>
             {
-                @"summary",
-                @"description"
+                "summary",
+                "parentIssueId",
+                "description",
+                "statusId",
+                "resolutionId",
+                "startDate",
+                "dueDate",
+                "estimatedHours",
+                "actualHours",
+                "issueTypeId",
+                //"categoryId[]",
+                //"versionId[]",
+                //"milestoneId[]",
+                "priorityId",
+                //"assigneeId",
+                //"notifiedUserId[]",
+                //"attachmentId[]",
+                "comment",
             };
         }
+
+        public override string ToString()
+        {
+            return string.Format("Issue: {0} {1}({2} {3})", issueKey, summary, status, issueType);
+        }
     }
-    
+
+    public class CustomFieldInIssue
+    {
+        public int id { get; set; }
+        public CustomFieldType fieldTypeId { get; set; }
+        public string name { get; set; }
+        public object value { get; set; }
+        public List<object> otherValue { get; set; }
+
+        /// <summary>
+        /// return properties for Patch
+        /// </summary>
+        /// <returns></returns>
+        [PatchPropertyNamesMethod]
+        public static IEnumerable<string> PatchPropertyNames()
+        {
+            return new List<string>
+                {
+                    @"value",
+                    @"otherValue"
+                };
+        }
+    }
+
+
     public class IssueType
     {
         public int id { get; set; }
@@ -183,7 +228,6 @@ namespace CSJSONBacklog.Model.Issues
             return string.Format("Star: {0}(Presenter: {1})", Title, Presenter);
         }
     }
-
 
 
     public class CountValue

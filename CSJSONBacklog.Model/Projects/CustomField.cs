@@ -1,28 +1,28 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
 using System.Collections.Generic;
+using CSJSONBacklog.Model.Attributes;
 
 namespace CSJSONBacklog.Model.Projects
 {
     public class CustomField
     {
-        public int Id { get; set; }
-        public CustomFieldType TypeId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public bool Required { get; set; }
-        public List<int> ApplicableIssueTypes { get; set; }
-        public string Min { get; set; }
-        public string Max { get; set; }
-        public string InitialValue { get; set; }
-        public string Unit { get; set; }
-        public bool? AllowAddItem { get; set; }
-        public bool? AllowInput { get; set; }
-        public List<CustomFieldItem> Items { get; set; }
+        public int id { get; set; }
+        public CustomFieldType typeId { get; set; }
+        public string name { get; set; }
+        public string description { get; set; }
+        public bool required { get; set; }
+        public List<int> applicableIssueTypes { get; set; }
+        public string min { get; set; }
+        public string max { get; set; }
+        public string initialValue { get; set; }
+        public string unit { get; set; }
+        public bool? allowAddItem { get; set; }
+        public bool? allowInput { get; set; }
 
         public override string ToString()
         {
-            return string.Format("CustomField: {0}({1}) TypeId: {2}", Name, Id, TypeId);
+            return string.Format("CustomField: {0}({1}) TypeId: {2}", name, id, typeId);
         }
     }
 
@@ -37,16 +37,29 @@ namespace CSJSONBacklog.Model.Projects
         Checkbox = 7,
         Radio = 8,
     }
-
+    
     public class CustomFieldItem
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int DisplayOrder { get; set; }
+        public int id { get; set; }
+        public string name { get; set; }
+        public int displayOrder { get; set; }
+
+        /// <summary>
+        /// return properties for Patch
+        /// </summary>
+        /// <returns></returns>
+        [PatchPropertyNamesMethod]
+        public static IEnumerable<string> PatchPropertyNames()
+        {
+            return new List<string>
+                {
+                    @"id",
+                };
+        }
 
         public override string ToString()
         {
-            return string.Format("CustomFieldItem: {0}({1}) DisplayOrder: {2}", Name, Id, DisplayOrder);
+            return string.Format("CustomFieldItem: {0}({1}) DisplayOrder: {2}", name, id, displayOrder);
         }
     }
 }

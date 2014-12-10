@@ -39,7 +39,7 @@ namespace CSJSONBacklog.Model.Issues
 
         public string GetParametersForAPI()
         {
-            var parameters = string.Format("{0}&offset={1}&count={2}&order={3}&sort={4}&attachment={5}&sharedFile={6}&parentChild={7}&keyword={8}",
+            var parameters = string.Format("{0}&offset={1}&count={2}&order={3}&sort={4}&attachment={5}&sharedFile={6}&parentChild={7}&",
                 MultiParametersForAPI(@"projectId", ProjectIds),
                 Offset,
                 Count,
@@ -47,8 +47,7 @@ namespace CSJSONBacklog.Model.Issues
                 Sort,
                 Attachment.ToString().ToLower(),
                 SharedFile.ToString().ToLower(),
-                (int)ParentChild,
-                Keyword);
+                (int)ParentChild);
 
             parameters += MultiParametersForAPI(@"issueTypeId", IssueTypes.Select(x => x.id));
             parameters += MultiParametersForAPI(@"categoryId", CategoryIds.Select(x => x.id));
@@ -70,6 +69,11 @@ namespace CSJSONBacklog.Model.Issues
             parameters += StringParametersForAPIDate("dueDateUntil", DueDateUntil);
             parameters += MultiParametersForAPI(@"id", Ids);
             parameters += MultiParametersForAPI(@"parentIssueId", ParentIssueIds);
+
+            if (!string.IsNullOrWhiteSpace(Keyword))
+            {
+                parameters += string.Format("&keyword={0}", Keyword);
+            }
 
             return parameters;
         }
