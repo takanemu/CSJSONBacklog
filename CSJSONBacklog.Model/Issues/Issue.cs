@@ -41,10 +41,10 @@ namespace CSJSONBacklog.Model.Issues
         public List<Attachment> attachments { get; set; }
         public List<SharedFile> sharedFiles { get; set; }
         public List<Star> stars { get; set; }
-        
-        public int issueTypeId { get { return issueType.id; } }
-        public int priorityId { get { return priority.id; } }
-        public int resolutionId { get { return resolution.id; } }
+
+        public int issueTypeId { get { return issueType == null ? 0 : issueType.id; } }
+        public int priorityId { get { return priority == null ? 0 : priority.id; } }
+        public int resolutionId { get { return resolution == null ? 0 : resolution.id; } }
 
         public string comment { get; set; }
 
