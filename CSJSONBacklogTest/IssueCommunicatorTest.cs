@@ -22,7 +22,7 @@ namespace CSJSONBacklogTest
 
         public static TestData TestData { get; set; }
 
-        #region 追加のテスト属性
+#region 
         [ClassInitialize]
         public static void MyClassInitialize(TestContext testContext)
         {
@@ -42,9 +42,11 @@ namespace CSJSONBacklogTest
         //public void MyTestCleanup()
         //{
         //}
-        #endregion
+#endregion
 
-        #region ConstructorTest
+
+
+#region ConstructorTest
         [TestMethod]
         public void IssueCommunicatorConstructorTest1()
         {
@@ -107,12 +109,13 @@ namespace CSJSONBacklogTest
                 Assert.Fail("unexpected");
             }
         }
-        #endregion
+#endregion
 
 
 
+#region Issues
         /// <summary>
-        ///GetIssue のテスト
+        ///GetIssue
         ///</summary>
         [TestMethod]
         public void GetIssueTest()
@@ -124,20 +127,20 @@ namespace CSJSONBacklogTest
         }
 
         /// <summary>
-        ///GetIssues のテスト
+        ///GetIssues
         ///</summary>
         [TestMethod]
         public void GetIssuesTest()
         {
             var target = new IssueCommunicator(SpaceName, APIKey);
             // issues in a project
-            var param = new QueryIssueParameters
+            var param = new IssueQuery
             {
                 ProjectIds = new List<int> { TestData.ProjectId },
                 ParentChild = ParentChild.All,
                 Offset = 0,
                 Count = 100,// per 100 max
-                Order = Order.Asc,
+                Order = Order.asc,
                 Sort = Sort.Created
             };
             var actual = target.GetIssues(param);
@@ -146,7 +149,7 @@ namespace CSJSONBacklogTest
         }
 
         /// <summary>
-        ///GetIssuesCount のテスト
+        ///GetIssuesCount
         ///</summary>
         [TestMethod]
         public void GetIssuesCountTest()
@@ -157,7 +160,7 @@ namespace CSJSONBacklogTest
         }
 
         /// <summary>
-        ///GetIssuesCount のテスト
+        ///GetIssuesCount
         ///</summary>
         [TestMethod]
         public void GetIssuesCountTest1()
@@ -168,7 +171,7 @@ namespace CSJSONBacklogTest
         }
 
         /// <summary>
-        ///UpdateIssue のテスト
+        ///UpdateIssue
         ///</summary>
         [TestMethod()]
         public void UpdateIssueTest()
@@ -184,5 +187,41 @@ namespace CSJSONBacklogTest
             Assert.AreNotEqual(actual.id, 0);
             Assert.IsTrue(actual.description.Contains(desc));
         }
+#endregion Issues
+
+
+
+#region Comment
+        /// <summary>
+        ///GetIssues
+        ///</summary>
+        [TestMethod]
+        public void GetCommentListTest1()
+        {
+            var target = new IssueCommunicator(SpaceName, APIKey);
+            var actual = target.GetCommentList(TestData.IssueIdOrKey);
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Any());
+        }
+
+        /// <summary>
+        ///GetIssues
+        ///</summary>
+        [TestMethod]
+        public void GetCommentListTest2()
+        {
+            var target = new IssueCommunicator(SpaceName, APIKey);
+            var param = new CommentQuery
+            {
+                minId = 0,
+                maxId = 0,
+                count = 100,
+                order = Order.asc,
+            };
+            var actual = target.GetCommentList(TestData.IssueIdOrKey, param);
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Any());
+        }
+#endregion Comment
     }
 }

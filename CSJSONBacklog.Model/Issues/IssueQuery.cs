@@ -7,7 +7,7 @@ using CSJSONBacklog.Model.Projects;
 
 namespace CSJSONBacklog.Model.Issues
 {
-    public class QueryIssueParameters : AbstractParameter
+    public class IssueQuery : AbstractParameter
     {
         public List<int> ProjectIds = new List<int>();
         public List<IssueType> IssueTypes = new List<IssueType>();
@@ -40,6 +40,7 @@ namespace CSJSONBacklog.Model.Issues
 
         public string GetParametersForAPI()
         {
+            //TODO: use RestSharp
             var parameters = string.Format("{0}&offset={1}&count={2}&order={3}&sort={4}&attachment={5}&sharedFile={6}&parentChild={7}&",
                 MultiParametersForAPI(@"projectId", ProjectIds),
                 Offset,
@@ -116,8 +117,8 @@ namespace CSJSONBacklog.Model.Issues
 
     public enum Order
     {
-        Desc = 0,
-        Asc = 1,
+        desc = 0,
+        asc = 1,
     }
 }
 

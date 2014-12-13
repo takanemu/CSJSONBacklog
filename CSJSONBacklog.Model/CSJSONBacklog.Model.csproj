@@ -52,8 +52,10 @@
     <Compile Include="AbstractParameter.cs" />
     <Compile Include="Attributes\PatchPropertyNamesMethodAttribute.cs" />
     <Compile Include="Error.cs" />
+    <Compile Include="Issues\Comment.cs" />
+    <Compile Include="Issues\CommentQuery.cs" />
     <Compile Include="Issues\Issue.cs" />
-    <Compile Include="Issues\QueryIssueParameters.cs" />
+    <Compile Include="Issues\IssueQuery.cs" />
     <Compile Include="Projects\Category.cs" />
     <Compile Include="Projects\DiskUsage.cs" />
     <Compile Include="Projects\Project.cs" />
@@ -62,6 +64,7 @@
     <Compile Include="Projects\Wiki.cs" />
     <Compile Include="Space\GitRepository.cs" />
     <Compile Include="Space\Group.cs" />
+    <Compile Include="Space\Notification.cs" />
     <Compile Include="Space\Space.cs" />
     <Compile Include="Space\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -23,12 +23,18 @@ namespace CSJSONBacklog.API
         /// Returns list of issues.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues"/>
-        IEnumerable<Issue> GetIssues(QueryIssueParameters param);
+        IEnumerable<Issue> GetIssues(IssueQuery param);
 
         /// <summary>
         /// Updates information about issue.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/update-issue"/>
         Issue UpdateIssue(Issue issue);
+
+        /// <summary>
+        /// Returns list of comments in issue.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-comments"/>
+        IEnumerable<Comment> GetCommentList(string issueIdOrKey, CommentQuery query);
     }
 }

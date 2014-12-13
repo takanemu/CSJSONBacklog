@@ -44,13 +44,13 @@ namespace CSJSONBacklogSample
             Debug.WriteLine(project + " " + count);
 
             // issues in a project
-            var param = new QueryIssueParameters
+            var param = new IssueQuery
             {
                 ProjectIds = new List<int> { project.Id },
                 ParentChild = ParentChild.All,
                 Offset = 0,
                 Count = 100,// per 100 max
-                Order = Order.Asc,
+                Order = Order.asc,
                 Sort = Sort.Created
             };
 
