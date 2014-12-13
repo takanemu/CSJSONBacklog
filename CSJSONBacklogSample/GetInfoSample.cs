@@ -103,7 +103,7 @@ namespace CSJSONBacklogSample
                 }
 
                 // version
-                var versions = projectCommunicator.GetVersions(project.ProjectKey);
+                var versions = projectCommunicator.GetVersionList(project.ProjectKey);
                 foreach (var version in versions)
                 {
                     Debug.WriteLine("\t" + version);

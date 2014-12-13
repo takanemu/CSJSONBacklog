@@ -24,7 +24,7 @@ namespace CSJSONBacklog.API
         /// Returns list of Versions in the project.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-versions"/>
-        IEnumerable<Version> GetVersions(string projectIdOrKey);
+        IEnumerable<Version> GetVersionList(string projectIdOrKey);
 
         /// <summary>
         /// Returns list of Categories in the project.
