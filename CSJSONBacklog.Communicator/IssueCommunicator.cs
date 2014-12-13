@@ -33,6 +33,15 @@ namespace CSJSONBacklog.Communicator
         }
 
         /// <summary>
+        /// Returns information about issue.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issue"/>
+        public Issue GetIssue(string issueIdOrKey)
+        {
+            return GetT<Issue>(string.Format("https://{0}.backlog.jp/api/v2/issues/{1}?apiKey={2}", Spacename, issueIdOrKey, ApiKey));
+        }
+
+        /// <summary>
         /// Returns list of issues.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues"/>

@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using CSJSONBacklog.Communicator;
 using CSJSONBacklog.Model.Issues;
@@ -59,6 +60,16 @@ namespace CSJSONBacklogSample
                 var issues = issueCommunicator.GetIssues(param).ToList();
                 if (issues.Any()) { result.AddRange(issues); }
             }
+
+#if false // get single
+            if (result.Any())
+            {
+                var issue = issueCommunicator.GetIssue(result.First().id.ToString(CultureInfo.InvariantCulture));
+                Debug.WriteLine("\t\t" + issue);
+                issue = issueCommunicator.GetIssue(result.First().issueKey);
+                Debug.WriteLine("\t\t" + issue);
+            }
+#endif
 
             return result;
         }

@@ -14,6 +14,12 @@ namespace CSJSONBacklog.API
         int GetIssuesCount(IEnumerable<int> projectIds);
 
         /// <summary>
+        /// Returns information about issue.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issue"/>
+        Issue GetIssue(string issueIdOrKey);
+
+        /// <summary>
         /// Returns list of issues.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues"/>
