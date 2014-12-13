@@ -124,6 +124,10 @@ namespace CSJSONBacklogSample
                     Debug.WriteLine("\t" + gitRepository);
                 }
 #endif
+#if false // get single
+                var oneProj = projectCommunicator.GetProject(project.ProjectKey);
+                Debug.WriteLine("\t\t" + oneProj);
+#endif
             }
         }
 
