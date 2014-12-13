@@ -41,6 +41,15 @@ namespace CSJSONBacklog.Communicator
             return GetT<IEnumerable<Version>>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/versions?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
         }
 
+        /// <summary>
+        /// Returns list of Categories in the project.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-categories"/>
+        public IEnumerable<Category> GetCategoryList(string projectIdOrKey)
+        {
+            return GetT<IEnumerable<Category>>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/categories?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
+        }
+
         #endregion Project
 
 

@@ -26,6 +26,12 @@ namespace CSJSONBacklog.API
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-versions"/>
         IEnumerable<Version> GetVersions(string projectIdOrKey);
 
+        /// <summary>
+        /// Returns list of Categories in the project.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-categories"/>
+        IEnumerable<Category> GetCategoryList(string projectIdOrKey);
+
         #endregion Project
 
 

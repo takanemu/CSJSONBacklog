@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CSJSONBacklog.Model.Projects;
 
 namespace CSJSONBacklog.Model.Issues
 {
