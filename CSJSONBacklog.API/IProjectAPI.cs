@@ -19,6 +19,13 @@ namespace CSJSONBacklog.API
         Project AddProject(string projectIdOrKey);
         Project UpdateProject(string projectIdOrKey);
         Project DeleteProject(string projectIdOrKey);
+
+        /// <summary>
+        /// Returns list of Versions in the project.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-versions"/>
+        IEnumerable<Version> GetVersions(string projectIdOrKey);
+
         #endregion Project
 
 

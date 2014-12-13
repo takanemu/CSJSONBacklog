@@ -57,6 +57,7 @@
     <Compile Include="Projects\DiskUsage.cs" />
     <Compile Include="Projects\Project.cs" />
     <Compile Include="Projects\CustomField.cs" />
+    <Compile Include="Projects\Version.cs" />
     <Compile Include="Projects\Wiki.cs" />
     <Compile Include="Space\GitRepository.cs" />
     <Compile Include="Space\Group.cs" />

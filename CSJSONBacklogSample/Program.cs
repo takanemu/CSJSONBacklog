@@ -24,21 +24,25 @@ namespace CSJSONBacklogSample
             string apiKey = Properties.Settings.Default.APIKey;// must change!
 
             // 1.get information
-            SampleOfGetInfo(spaceName, apiKey);
+            EnforceGetSamples(spaceName, apiKey);
 
             // 2.update information
             //SampleOfUpdateIssue(spaceName, apiKey, "PROJ1");
         }
 
 
-
-        private static void SampleOfGetInfo(string spaceName, string apiKey)
+        /// <summary>
+        /// Get API Samples
+        /// </summary>
+        private static void EnforceGetSamples(string spaceName, string apiKey)
         {
             var getInfoSample = new GetInfoSample(spaceName, apiKey);
 
+            // print projects
             var projects = getInfoSample.GetProjects().ToList();
             getInfoSample.PrintProjectDetails(projects);
 
+            // print issues
             foreach (var project in projects.Where(x => x.ProjectKey.Equals("SND")))
             {
                 var issues = getInfoSample.GetIssues(project);
