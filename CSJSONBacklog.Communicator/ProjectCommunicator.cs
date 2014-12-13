@@ -30,6 +30,17 @@ namespace CSJSONBacklog.Communicator
         public Project AddProject(string projectIdOrKey) { throw new System.NotImplementedException(); }
         public Project UpdateProject(string projectIdOrKey) { throw new System.NotImplementedException(); }
         public Project DeleteProject(string projectIdOrKey) { throw new System.NotImplementedException(); }
+
+
+        /// <summary>
+        /// Returns list of Versions in the project.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-versions"/>
+        public IEnumerable<Version> GetVersions(string projectIdOrKey)
+        {
+            return GetT<IEnumerable<Version>>(string.Format("https://{0}.backlog.jp/api/v2/projects/{1}/versions?apiKey={2}", Spacename, projectIdOrKey, ApiKey));
+        }
+
         #endregion Project
 
 
