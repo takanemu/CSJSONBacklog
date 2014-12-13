@@ -95,6 +95,13 @@ namespace CSJSONBacklogSample
                     Debug.WriteLine("\t" + issueType);
                 }
 
+                // categories
+                var categories = projectCommunicator.GetCategoryList(project.ProjectKey);
+                foreach (var category in categories)
+                {
+                    Debug.WriteLine("\t" + category);
+                }
+
                 // version
                 var versions = projectCommunicator.GetVersions(project.ProjectKey);
                 foreach (var version in versions)

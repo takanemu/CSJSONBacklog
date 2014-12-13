@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Linq;
 using CSJSONBacklog.Communicator;
 using CSJSONBacklog.Model.Issues;
-using CSJSONBacklog.Model.Projects;
 
 namespace CSJSONBacklogSample
 {

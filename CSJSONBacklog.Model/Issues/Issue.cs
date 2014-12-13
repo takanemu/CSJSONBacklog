@@ -155,17 +155,6 @@ namespace CSJSONBacklog.Model.Issues
         }
     }
 
-    public class Category
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int displayOrder { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Category: {0}", name);
-        }
-    }
 
     public class Milestone
     {
