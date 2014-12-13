@@ -191,9 +191,9 @@ namespace CSJSONBacklogTest
 
 
 
-#region Comment
+#region Comments
         /// <summary>
-        ///GetIssues
+        /// GetCommentListTest1
         ///</summary>
         [TestMethod]
         public void GetCommentListTest1()
@@ -205,7 +205,7 @@ namespace CSJSONBacklogTest
         }
 
         /// <summary>
-        ///GetIssues
+        /// GetCommentListTest2
         ///</summary>
         [TestMethod]
         public void GetCommentListTest2()
@@ -222,6 +222,48 @@ namespace CSJSONBacklogTest
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Any());
         }
-#endregion Comment
+#endregion Comments
+
+
+
+#region Attributes
+
+        /// <summary>
+        /// GetStatusListTest
+        ///</summary>
+        [TestMethod]
+        public void GetStatusListTest()
+        {
+            var target = new IssueCommunicator(SpaceName, APIKey);
+            var actual = target.GetStatusList();
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Any());
+        }
+
+        /// <summary>
+        /// GetResolutionListTest
+        ///</summary>
+        [TestMethod]
+        public void GetResolutionListTest()
+        {
+            var target = new IssueCommunicator(SpaceName, APIKey);
+            var actual = target.GetResolutionList();
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Any());
+        }
+
+        /// <summary>
+        /// GetPriorityListTest
+        ///</summary>
+        [TestMethod]
+        public void GetPriorityListTest()
+        {
+            var target = new IssueCommunicator(SpaceName, APIKey);
+            var actual = target.GetPriorityList();
+            Assert.IsNotNull(actual);
+            Assert.IsTrue(actual.Any());
+        }
+
+#endregion Attributes
     }
 }

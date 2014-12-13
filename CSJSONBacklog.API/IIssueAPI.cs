@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using CSJSONBacklog.Model.Issues;
+using CSJSONBacklog.Model.Space;
 
 namespace CSJSONBacklog.API
 {
@@ -36,5 +37,25 @@ namespace CSJSONBacklog.API
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-comments"/>
         IEnumerable<Comment> GetCommentList(string issueIdOrKey, CommentQuery query);
+
+
+
+        /// <summary>
+        /// Returns list of statuses.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-status"/>
+        IEnumerable<Status> GetStatusList();
+
+        /// <summary>
+        /// Returns list of resolutions.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-resolutions"/>
+        IEnumerable<Resolution> GetResolutionList();
+
+        /// <summary>
+        /// Returns list of priorities.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-priorities"/>
+        IEnumerable<Resolution> GetPriorityList();
     }
 }

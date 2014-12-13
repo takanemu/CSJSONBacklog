@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using CSJSONBacklog.API;
 using CSJSONBacklog.Model.Issues;
+using CSJSONBacklog.Model.Space;
 
 namespace CSJSONBacklog.Communicator
 {
@@ -78,6 +79,41 @@ namespace CSJSONBacklog.Communicator
         {
             var uri = string.Format("https://{0}.backlog.jp/api/v2/issues/{1}/comments?apiKey={2}", Spacename, issueIdOrKey, ApiKey);
             return GetT<IEnumerable<Comment>>(uri);
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// Returns list of statuses.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-status"/>
+        public IEnumerable<Status> GetStatusList()
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/statuses?apiKey={1}", Spacename, ApiKey);
+            return GetT<IEnumerable<Status>>(uri);
+        }
+
+        /// <summary>
+        /// Returns list of resolutions.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-resolutions"/>
+        public IEnumerable<Resolution> GetResolutionList()
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/resolutions?apiKey={1}", Spacename, ApiKey);
+            return GetT<IEnumerable<Resolution>>(uri);
+        }
+
+        /// <summary>
+        /// Returns list of priorities.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-priorities"/>
+        public IEnumerable<Resolution> GetPriorityList()
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/priorities?apiKey={1}", Spacename, ApiKey);
+            return GetT<IEnumerable<Resolution>>(uri);
         }
     }
 }

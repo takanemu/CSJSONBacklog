@@ -56,6 +56,9 @@
     <Compile Include="Issues\CommentQuery.cs" />
     <Compile Include="Issues\Issue.cs" />
     <Compile Include="Issues\IssueQuery.cs" />
+    <Compile Include="Issues\Priority.cs" />
+    <Compile Include="Issues\Resolution.cs" />
+    <Compile Include="Issues\Status.cs" />
     <Compile Include="Projects\Category.cs" />
     <Compile Include="Projects\DiskUsage.cs" />
     <Compile Include="Projects\Project.cs" />

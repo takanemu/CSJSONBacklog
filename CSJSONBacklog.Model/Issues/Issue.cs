@@ -122,39 +122,6 @@ namespace CSJSONBacklog.Model.Issues
         }
     }
 
-    public class Resolution
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Resolution: {0}", name);
-        }
-    }
-
-    public class Priority
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Priority: {0}", name);
-        }
-    }
-
-    public class Status
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Status: {0}", name);
-        }
-    }
-
 
     public class Milestone
     {

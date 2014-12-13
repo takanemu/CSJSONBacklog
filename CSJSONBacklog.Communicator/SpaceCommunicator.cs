@@ -9,5 +9,6 @@ namespace CSJSONBacklog.Communicator
         public SpaceCommunicator(string spacename, string apiKey) : base(spacename, apiKey)
         {
         }
+
     }
 }
