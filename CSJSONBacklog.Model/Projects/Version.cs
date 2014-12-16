@@ -1,5 +1,7 @@
 ﻿/* See the file "LICENSE" for the full license governing this code. */
 
+using System;
+
 namespace CSJSONBacklog.Model.Projects
 {
     /// <summary>
@@ -11,8 +13,8 @@ namespace CSJSONBacklog.Model.Projects
         public int projectId { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public object startDate { get; set; }
-        public object releaseDueDate { get; set; }
+        public DateTime? startDate { get; set; }
+        public DateTime? releaseDueDate { get; set; }
         public bool archived { get; set; }
         public int displayOrder { get; set; }
 

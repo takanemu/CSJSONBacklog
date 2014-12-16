@@ -13,7 +13,9 @@ namespace CSJSONBacklogTest
         public string APIKey { get; set; }
 
         public string IssueIdOrKey { get; set; }
+        
         public int ProjectId { get; set; }
+        public string ProjectIdOrKey { get; set; }
         public IEnumerable<int> ProjectIds { get; set; }
 
 
