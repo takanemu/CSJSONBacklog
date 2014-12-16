@@ -15,6 +15,9 @@ namespace CSJSONBacklog.Communicator
 
         protected AbstractCommunicator(string spacename, string apiKey)
         {
+            if (string.IsNullOrWhiteSpace(spacename)) { throw new ArgumentNullException(spacename); }
+            if (string.IsNullOrWhiteSpace(apiKey)) { throw new ArgumentNullException(apiKey); }
+
             Spacename = spacename;
             ApiKey = apiKey;
         }
@@ -68,20 +71,13 @@ namespace CSJSONBacklog.Communicator
             var response = client.Execute(request);
             var content = response.Content;
 
-            T result = default(T);
-            try
+            var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
+            if (errors.HasError)
             {
-                result = JsonConvert.DeserializeObject<T>(content);
-            }
-            catch
-            {
-                var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
-                if (errors.HasError)
-                {
-                    throw new Exception(errors.ToString());
-                }
+                throw new Exception(errors.ToString());
             }
 
+            var result = JsonConvert.DeserializeObject<T>(content);
             return result;
         }
     }

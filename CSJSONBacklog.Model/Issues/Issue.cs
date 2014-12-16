@@ -41,10 +41,10 @@ namespace CSJSONBacklog.Model.Issues
         public List<Attachment> attachments { get; set; }
         public List<SharedFile> sharedFiles { get; set; }
         public List<Star> stars { get; set; }
-        
-        public int issueTypeId { get { return issueType.id; } }
-        public int priorityId { get { return priority.id; } }
-        public int resolutionId { get { return resolution.id; } }
+
+        public int issueTypeId { get { return issueType == null ? 0 : issueType.id; } }
+        public int priorityId { get { return priority == null ? 0 : priority.id; } }
+        public int resolutionId { get { return resolution == null ? 0 : resolution.id; } }
 
         public string comment { get; set; }
 
@@ -122,50 +122,6 @@ namespace CSJSONBacklog.Model.Issues
         }
     }
 
-    public class Resolution
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Resolution: {0}", name);
-        }
-    }
-
-    public class Priority
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Priority: {0}", name);
-        }
-    }
-
-    public class Status
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Status: {0}", name);
-        }
-    }
-
-    public class Category
-    {
-        public int id { get; set; }
-        public string name { get; set; }
-        public int displayOrder { get; set; }
-
-        public override string ToString()
-        {
-            return string.Format("Category: {0}", name);
-        }
-    }
 
     public class Milestone
     {

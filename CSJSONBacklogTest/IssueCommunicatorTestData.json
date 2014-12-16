@@ -1,0 +1,10 @@
+﻿{
+  "SpaceName": "yourSpaceName",
+  "APIKey": "yourAPIKey",
+  "IssueIdOrKey": "XXX-1",
+  "ProjectId": -1,
+  "ProjectIds": [
+    -1,
+    -2
+  ]
+}

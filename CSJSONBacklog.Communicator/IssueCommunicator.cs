@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using CSJSONBacklog.API;
 using CSJSONBacklog.Model.Issues;
+using CSJSONBacklog.Model.Space;
 
 namespace CSJSONBacklog.Communicator
 {
@@ -33,10 +34,19 @@ namespace CSJSONBacklog.Communicator
         }
 
         /// <summary>
+        /// Returns information about issue.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issue"/>
+        public Issue GetIssue(string issueIdOrKey)
+        {
+            return GetT<Issue>(string.Format("https://{0}.backlog.jp/api/v2/issues/{1}?apiKey={2}", Spacename, issueIdOrKey, ApiKey));
+        }
+
+        /// <summary>
         /// Returns list of issues.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issues"/>
-        public IEnumerable<Issue> GetIssues(QueryIssueParameters param)
+        public IEnumerable<Issue> GetIssues(IssueQuery param)
         {
             var uri = string.Format("https://{0}.backlog.jp/api/v2/issues?apiKey={1}&{2}", Spacename, ApiKey, param.GetParametersForAPI());
             return GetT<IEnumerable<Issue>>(uri);
@@ -49,6 +59,61 @@ namespace CSJSONBacklog.Communicator
         public Issue UpdateIssue(Issue issue)
         {
             return PatchT(string.Format("/api/v2/issues/{0}", issue.issueKey), issue);
+        }
+
+        /// <summary>
+        /// Returns list of comments in issue.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-comments"/>
+        public IEnumerable<Comment> GetCommentList(string issueIdOrKey, CommentQuery query)
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues/{1}/comments?apiKey={2}&{3}", Spacename, issueIdOrKey, ApiKey, query.GetParametersForAPI());
+            return GetT<IEnumerable<Comment>>(uri);
+        }
+
+        /// <summary>
+        /// Returns list of comments in issue.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-comments"/>
+        public IEnumerable<Comment> GetCommentList(string issueIdOrKey)
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues/{1}/comments?apiKey={2}", Spacename, issueIdOrKey, ApiKey);
+            return GetT<IEnumerable<Comment>>(uri);
+        }
+
+
+
+
+
+
+        /// <summary>
+        /// Returns list of statuses.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-status"/>
+        public IEnumerable<Status> GetStatusList()
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/statuses?apiKey={1}", Spacename, ApiKey);
+            return GetT<IEnumerable<Status>>(uri);
+        }
+
+        /// <summary>
+        /// Returns list of resolutions.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-resolutions"/>
+        public IEnumerable<Resolution> GetResolutionList()
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/resolutions?apiKey={1}", Spacename, ApiKey);
+            return GetT<IEnumerable<Resolution>>(uri);
+        }
+
+        /// <summary>
+        /// Returns list of priorities.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-priorities"/>
+        public IEnumerable<Resolution> GetPriorityList()
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/priorities?apiKey={1}", Spacename, ApiKey);
+            return GetT<IEnumerable<Resolution>>(uri);
         }
     }
 }

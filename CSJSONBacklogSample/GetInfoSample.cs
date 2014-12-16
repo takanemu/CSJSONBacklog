@@ -2,6 +2,7 @@
 
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using CSJSONBacklog.Communicator;
 using CSJSONBacklog.Model.Issues;
@@ -43,13 +44,13 @@ namespace CSJSONBacklogSample
             Debug.WriteLine(project + " " + count);
 
             // issues in a project
-            var param = new QueryIssueParameters
+            var param = new IssueQuery
             {
                 ProjectIds = new List<int> { project.Id },
                 ParentChild = ParentChild.All,
                 Offset = 0,
                 Count = 100,// per 100 max
-                Order = Order.Asc,
+                Order = Order.asc,
                 Sort = Sort.Created
             };
 
@@ -59,6 +60,16 @@ namespace CSJSONBacklogSample
                 var issues = issueCommunicator.GetIssues(param).ToList();
                 if (issues.Any()) { result.AddRange(issues); }
             }
+
+#if false // get single
+            if (result.Any())
+            {
+                var issue = issueCommunicator.GetIssue(result.First().id.ToString(CultureInfo.InvariantCulture));
+                Debug.WriteLine("\t\t" + issue);
+                issue = issueCommunicator.GetIssue(result.First().issueKey);
+                Debug.WriteLine("\t\t" + issue);
+            }
+#endif
 
             return result;
         }
@@ -95,6 +106,20 @@ namespace CSJSONBacklogSample
                     Debug.WriteLine("\t" + issueType);
                 }
 
+                // categories
+                var categories = projectCommunicator.GetCategoryList(project.ProjectKey);
+                foreach (var category in categories)
+                {
+                    Debug.WriteLine("\t" + category);
+                }
+
+                // version
+                var versions = projectCommunicator.GetVersionList(project.ProjectKey);
+                foreach (var version in versions)
+                {
+                    Debug.WriteLine("\t" + version);
+                }
+
                 // custom fields
                 var customFieldList = projectCommunicator.GetCustomFieldList(project.ProjectKey);
                 foreach (var customField in customFieldList)
@@ -109,6 +134,10 @@ namespace CSJSONBacklogSample
                 {
                     Debug.WriteLine("\t" + gitRepository);
                 }
+#endif
+#if false // get single
+                var oneProj = projectCommunicator.GetProject(project.ProjectKey);
+                Debug.WriteLine("\t\t" + oneProj);
 #endif
             }
         }

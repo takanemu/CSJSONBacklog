@@ -6,7 +6,6 @@ using System.Diagnostics;
 using System.Linq;
 using CSJSONBacklog.Communicator;
 using CSJSONBacklog.Model.Issues;
-using CSJSONBacklog.Model.Projects;
 
 namespace CSJSONBacklogSample
 {
@@ -24,21 +23,25 @@ namespace CSJSONBacklogSample
             string apiKey = Properties.Settings.Default.APIKey;// must change!
 
             // 1.get information
-            SampleOfGetInfo(spaceName, apiKey);
+            EnforceGetSamples(spaceName, apiKey);
 
             // 2.update information
             //SampleOfUpdateIssue(spaceName, apiKey, "PROJ1");
         }
 
 
-
-        private static void SampleOfGetInfo(string spaceName, string apiKey)
+        /// <summary>
+        /// Get API Samples
+        /// </summary>
+        private static void EnforceGetSamples(string spaceName, string apiKey)
         {
             var getInfoSample = new GetInfoSample(spaceName, apiKey);
 
+            // print projects
             var projects = getInfoSample.GetProjects().ToList();
             getInfoSample.PrintProjectDetails(projects);
 
+            // print issues
             foreach (var project in projects.Where(x => x.ProjectKey.Equals("SND")))
             {
                 var issues = getInfoSample.GetIssues(project);
@@ -61,13 +64,13 @@ namespace CSJSONBacklogSample
             Debug.WriteLine("\t" + proj + " " + count);
 
             // issues in a project
-            var param = new QueryIssueParameters
+            var param = new IssueQuery
             {
                 ProjectIds = new List<int> { proj.Id },
                 ParentChild = ParentChild.All,
                 Offset = 0,
                 Count = 100,// per 100 max
-                Order = Order.Asc,
+                Order = Order.asc,
                 Sort = Sort.Created
             };
             var issue = issueCommunicator.GetIssues(param).FirstOrDefault();
