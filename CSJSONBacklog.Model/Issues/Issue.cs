@@ -34,9 +34,9 @@ namespace CSJSONBacklog.Model.Issues
         public Decimal? actualHours { get; set; }
         public int? parentIssueId { get; set; }
         public User createdUser { get; set; }
-        public string created { get; set; }
+        public DateTime? created { get; set; }
         public User updatedUser { get; set; }
-        public string updated { get; set; }
+        public DateTime? updated { get; set; }
         public List<CustomFieldInIssue> customFields { get; set; }
         public List<Attachment> attachments { get; set; }
         public List<SharedFile> sharedFiles { get; set; }
