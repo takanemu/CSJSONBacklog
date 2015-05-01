@@ -9,7 +9,7 @@ CSJSONBacklog is a library of Backlog API v2 written in C#.
 
 Development is in step by step progress.
 
-https://github.com/mtaniuchi/CSJSONBacklog/tree/develop
+https://github.com/mtaniuchi/CSJSONBacklog/tree/master
 
 ## Sample1 - get project list
 ```cs
