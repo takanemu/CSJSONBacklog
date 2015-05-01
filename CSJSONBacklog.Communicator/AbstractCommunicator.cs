@@ -10,21 +10,21 @@ namespace CSJSONBacklog.Communicator
 {
     public abstract class AbstractCommunicator : AbstractParameter, ICommunicator
     {
-        public string Spacename { get; private set; }
+        public string SpaceKey { get; private set; }
         public string ApiKey { get; private set; }
 
-        protected AbstractCommunicator(string spacename, string apiKey)
+        protected AbstractCommunicator(string spaceKey, string apiKey)
         {
-            if (string.IsNullOrWhiteSpace(spacename)) { throw new ArgumentNullException(spacename); }
+            if (string.IsNullOrWhiteSpace(spaceKey)) { throw new ArgumentNullException(spaceKey); }
             if (string.IsNullOrWhiteSpace(apiKey)) { throw new ArgumentNullException(apiKey); }
 
-            Spacename = spacename;
+            SpaceKey = spaceKey;
             ApiKey = apiKey;
         }
 
         protected string BaseUri
         {
-            get { return string.Format("https://{0}.backlog.jp/", Spacename); }
+            get { return string.Format("https://{0}.backlog.jp/", SpaceKey); }
         }
 
         protected T GetT<T>(string uri)

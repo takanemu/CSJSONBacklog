@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using CSJSONBacklog.Communicator;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -30,7 +29,7 @@ namespace CSJSONBacklogTest
         public static void MyClassInitialize(TestContext testContext)
         {
             TestData = TestData.CreateNew("SpaceCommunicatorTestData.json");
-            SpaceName = TestData.SpaceName;
+            SpaceKey = TestData.SpaceName;
             APIKey = TestData.APIKey;
         }
         //クラスのすべてのテストを実行した後にコードを実行するには、ClassCleanup を使用
@@ -121,12 +120,24 @@ namespace CSJSONBacklogTest
 
 
         /// <summary>
+        /// GetSpace
+        ///</summary>
+        [TestMethod]
+        public void GetSpaceTest()
+        {
+            var target = new SpaceCommunicator(SpaceKey, APIKey);
+            var actual = target.GetSpace();
+            Assert.AreNotEqual(actual, null);
+            Assert.AreEqual(actual.SpaceKey, SpaceKey);
+        }
+
+        /// <summary>
         /// GetUserList
         ///</summary>
         [TestMethod]
         public void GetUserListTest()
         {
-            var target = new SpaceCommunicator(SpaceName, APIKey);
+            var target = new SpaceCommunicator(SpaceKey, APIKey);
             var actual = target.GetUserList();
             Assert.AreNotEqual(actual.Count(), 0);
         }

@@ -7,6 +7,16 @@ namespace CSJSONBacklog.API
 {
     public interface ISpaceAPI
     {
+        /// <summary>
+        /// Returns information about your space.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-space"/>
+        Space GetSpace();
+
+        /// <summary>
+        /// Returns list of users in your space.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-users"/>
         IEnumerable<User> GetUserList();
     }
 }
