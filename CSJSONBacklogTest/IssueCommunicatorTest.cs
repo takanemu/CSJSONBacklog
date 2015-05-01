@@ -27,7 +27,7 @@ namespace CSJSONBacklogTest
         public static void MyClassInitialize(TestContext testContext)
         {
             TestData = TestData.CreateNew("IssueCommunicatorTestData.json");
-            SpaceName = TestData.SpaceName;
+            SpaceKey = TestData.SpaceName;
             APIKey = TestData.APIKey;
         }
         //[ClassCleanup()]
@@ -120,7 +120,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetIssueTest()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             var actual = target.GetIssue(TestData.IssueIdOrKey);
             Assert.IsNotNull(actual);
             Assert.AreNotEqual(actual.id, 0);
@@ -132,7 +132,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetIssuesTest()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             // issues in a project
             var param = new IssueQuery
             {
@@ -154,7 +154,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetIssuesCountTest()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             var actual = target.GetIssuesCount(TestData.ProjectId);
             Assert.AreNotEqual(actual, 0);
         }
@@ -165,7 +165,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetIssuesCountTest1()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             var actual = target.GetIssuesCount(TestData.ProjectIds);
             Assert.AreNotEqual(actual, 0);
         }
@@ -176,7 +176,7 @@ namespace CSJSONBacklogTest
         [TestMethod()]
         public void UpdateIssueTest()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             
             var issue = target.GetIssue(TestData.IssueIdOrKey);
             var desc = " Update by Test @" + DateTime.Now;
@@ -198,7 +198,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetCommentListTest1()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             var actual = target.GetCommentList(TestData.IssueIdOrKey);
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Any());
@@ -210,7 +210,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetCommentListTest2()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             var param = new CommentQuery
             {
                 minId = 0,
@@ -234,7 +234,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetStatusListTest()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             var actual = target.GetStatusList();
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Any());
@@ -246,7 +246,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetResolutionListTest()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             var actual = target.GetResolutionList();
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Any());
@@ -258,7 +258,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetPriorityListTest()
         {
-            var target = new IssueCommunicator(SpaceName, APIKey);
+            var target = new IssueCommunicator(SpaceKey, APIKey);
             var actual = target.GetPriorityList();
             Assert.IsNotNull(actual);
             Assert.IsTrue(actual.Any());

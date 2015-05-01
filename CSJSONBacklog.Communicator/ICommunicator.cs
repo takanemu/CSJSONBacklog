@@ -4,7 +4,7 @@ namespace CSJSONBacklog.Communicator
 {
     interface ICommunicator
     {
-        string Spacename { get; }
+        string SpaceKey { get; }
         string ApiKey { get; }
     }
 }

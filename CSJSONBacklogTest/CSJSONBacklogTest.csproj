@@ -67,6 +67,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="SpaceCommunicatorTest.cs" />
     <Compile Include="TestData.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,6 +95,9 @@
     </None>
     <None Include="IssueCommunicatorTestData.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="SpaceCommunicatorTestData.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

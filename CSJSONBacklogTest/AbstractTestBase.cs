@@ -6,7 +6,7 @@ namespace CSJSONBacklogTest
     /// </summary>
     public abstract class AbstractTestBase
     {
-        public static string SpaceName { get; set; }
+        public static string SpaceKey { get; set; }
         public static string APIKey { get; set; }
     }
 }

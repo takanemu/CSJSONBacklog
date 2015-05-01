@@ -25,7 +25,7 @@ namespace CSJSONBacklogTest
         public static void MyClassInitialize(TestContext testContext)
         {
             TestData = TestData.CreateNew("ProjectCommunicatorTestData.json");
-            SpaceName = TestData.SpaceName;
+            SpaceKey = TestData.SpaceName;
             APIKey = TestData.APIKey;
         }
         //[ClassCleanup()]
@@ -115,7 +115,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void AddProjectTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             Assert.Inconclusive("Assert.Inconclusive");
         }
 
@@ -125,7 +125,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void AddProjectAdministratorTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             Assert.Inconclusive("Assert.Inconclusive");
         }
 
@@ -135,7 +135,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void AddProjectUserTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             Assert.Inconclusive("Assert.Inconclusive");
         }
 
@@ -145,7 +145,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void DeleteProjectTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             Assert.Inconclusive("Assert.Inconclusive");
         }
 
@@ -155,7 +155,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void DeleteProjectAdministratorTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             Assert.Inconclusive("Assert.Inconclusive");
         }
 
@@ -165,7 +165,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void DeleteProjectUserTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             Assert.Inconclusive("Assert.Inconclusive");
         }
 
@@ -175,7 +175,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetCategoryListTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetCategoryList(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -186,7 +186,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetCustomFieldListTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetCustomFieldList(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -197,7 +197,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetIssueTypeListTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetIssueTypeList(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -208,7 +208,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetListofGitRepositoriesTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetListofGitRepositories(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -219,7 +219,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetListofGroupsTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetListofGroups(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -230,7 +230,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetListofRecentlyViewedIssuesTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetListofRecentlyViewedIssues(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -241,7 +241,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetListofRecentlyViewedProjectsTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetListofRecentlyViewedProjects(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -252,7 +252,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetListofRecentlyViewedProjectsTest1()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetListofRecentlyViewedProjects(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -263,7 +263,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetListofRecentlyViewedWikisTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetListofRecentlyViewedWikis(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -274,7 +274,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetProjectTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetProject(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Id, 0);
         }
@@ -285,7 +285,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetProjectAdministratorTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetProjectAdministrator(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Id, 0);
         }
@@ -296,7 +296,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetProjectAdministratorListTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetProjectAdministratorList(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -307,7 +307,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetProjectDiskUsageTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetProjectDiskUsage(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.ProjectId, 0);
         }
@@ -327,7 +327,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetProjectListTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetProjectList();
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -347,7 +347,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetProjectUserListTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetProjectUserList(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
@@ -358,7 +358,7 @@ namespace CSJSONBacklogTest
         [TestMethod]
         public void GetVersionListTest()
         {
-            var target = new ProjectCommunicator(SpaceName, APIKey);
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
             var actual = target.GetVersionList(TestData.ProjectIdOrKey);
             Assert.AreNotEqual(actual.Count(), 0);
         }
