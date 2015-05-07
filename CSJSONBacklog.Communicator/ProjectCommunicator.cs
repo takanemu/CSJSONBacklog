@@ -77,6 +77,18 @@ namespace CSJSONBacklog.Communicator
         #endregion Project User
 
 
+        #region Project Wiki
+        /// <summary>
+        /// Returns list of Wiki pages.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-wikis"/>
+        public IEnumerable<WikiPage> GetWikiPageList(string projectIdOrKey)
+        {
+            return GetT<IEnumerable<WikiPage>>(string.Format("https://{0}.backlog.jp/api/v2/wikis?projectIdOrKey={1}&apiKey={2}", SpaceKey, projectIdOrKey, ApiKey));
+        }
+        #endregion Project Wiki
+
+
         #region Project Administrator
         /// <summary>
         /// Returns list of users who has Project Administrator role

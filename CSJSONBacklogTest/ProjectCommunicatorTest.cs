@@ -371,5 +371,18 @@ namespace CSJSONBacklogTest
         {
             Assert.Inconclusive("Assert.Inconclusive");
         }
+
+
+
+        /// <summary>
+        ///GetVersionList
+        ///</summary>
+        [TestMethod]
+        public void GetGetWikiPageListTest()
+        {
+            var target = new ProjectCommunicator(SpaceKey, APIKey);
+            var actual = target.GetWikiPageList(TestData.ProjectIdOrKey);
+            Assert.AreNotEqual(actual.Count(), 0);
+        }
     }
 }
