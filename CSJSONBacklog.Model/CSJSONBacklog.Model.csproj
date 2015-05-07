@@ -52,6 +52,7 @@
     <Compile Include="AbstractParameter.cs" />
     <Compile Include="Attributes\PatchPropertyNamesMethodAttribute.cs" />
     <Compile Include="Error.cs" />
+    <Compile Include="Extensions\EnumerableEqualityExtension.cs" />
     <Compile Include="Issues\Comment.cs" />
     <Compile Include="Issues\CommentQuery.cs" />
     <Compile Include="Issues\Issue.cs" />
