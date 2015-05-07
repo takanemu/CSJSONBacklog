@@ -59,6 +59,13 @@ namespace CSJSONBacklog.API
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-wikis"/>
         IEnumerable<WikiPage> GetWikiPageList(string projectIdOrKey);
+
+        /// <summary>
+        /// Returns information about Wiki page.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-wiki"/>
+        WikiPage GetWikiPage(int wikiId);
+
         #endregion Project Wiki
 
         #region Project Administrator
