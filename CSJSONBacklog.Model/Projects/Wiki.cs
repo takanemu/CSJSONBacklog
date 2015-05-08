@@ -11,6 +11,7 @@ namespace CSJSONBacklog.Model.Projects
         public int Id { get; set; }
         public int ProjectId { get; set; }
         public string Name { get; set; }
+        public string Content { get; set; }
         public List<Tag> Tags { get; set; }
         public User CreatedUser { get; set; }
         public string Created { get; set; }
@@ -28,7 +29,7 @@ namespace CSJSONBacklog.Model.Projects
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return Id == other.Id && ProjectId == other.ProjectId && string.Equals(Name, other.Name) && Extensions.EnumerableEqualityExtension.ScrambledEquals(Tags, other.Tags) && Equals(CreatedUser, other.CreatedUser) && string.Equals(Created, other.Created) && Equals(UpdatedUser, other.UpdatedUser) && Updated.Equals(other.Updated);
+            return Id == other.Id && ProjectId == other.ProjectId && string.Equals(Name, other.Name) && string.Equals(Content, other.Content) && Extensions.EnumerableEqualityExtension.ScrambledEquals(Tags, other.Tags) && Equals(CreatedUser, other.CreatedUser) && string.Equals(Created, other.Created) && Equals(UpdatedUser, other.UpdatedUser) && Updated.Equals(other.Updated);
         }
 
         public override bool Equals(object obj)
@@ -46,6 +47,7 @@ namespace CSJSONBacklog.Model.Projects
                 int hashCode = Id;
                 hashCode = (hashCode*397) ^ ProjectId;
                 hashCode = (hashCode*397) ^ (Name != null ? Name.GetHashCode() : 0);
+                hashCode = (hashCode*397) ^ (Content != null ? Content.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ (Tags != null ? Tags.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ (CreatedUser != null ? CreatedUser.GetHashCode() : 0);
                 hashCode = (hashCode*397) ^ (Created != null ? Created.GetHashCode() : 0);
@@ -73,7 +75,7 @@ namespace CSJSONBacklog.Model.Projects
                 if (ReferenceEquals(x, null)) return false;
                 if (ReferenceEquals(y, null)) return false;
                 if (x.GetType() != y.GetType()) return false;
-                return x.Id == y.Id && x.ProjectId == y.ProjectId && string.Equals(x.Name, y.Name) && Equals(x.Tags, y.Tags) && Equals(x.CreatedUser, y.CreatedUser) && string.Equals(x.Created, y.Created) && Equals(x.UpdatedUser, y.UpdatedUser) && x.Updated.Equals(y.Updated);
+                return x.Id == y.Id && x.ProjectId == y.ProjectId && string.Equals(x.Name, y.Name) && string.Equals(x.Content, y.Content) && Equals(x.Tags, y.Tags) && Equals(x.CreatedUser, y.CreatedUser) && string.Equals(x.Created, y.Created) && Equals(x.UpdatedUser, y.UpdatedUser) && x.Updated.Equals(y.Updated);
             }
 
             public int GetHashCode(WikiPage obj)
@@ -83,6 +85,7 @@ namespace CSJSONBacklog.Model.Projects
                     int hashCode = obj.Id;
                     hashCode = (hashCode*397) ^ obj.ProjectId;
                     hashCode = (hashCode*397) ^ (obj.Name != null ? obj.Name.GetHashCode() : 0);
+                    hashCode = (hashCode*397) ^ (obj.Content != null ? obj.Content.GetHashCode() : 0);
                     hashCode = (hashCode*397) ^ (obj.Tags != null ? obj.Tags.GetHashCode() : 0);
                     hashCode = (hashCode*397) ^ (obj.CreatedUser != null ? obj.CreatedUser.GetHashCode() : 0);
                     hashCode = (hashCode*397) ^ (obj.Created != null ? obj.Created.GetHashCode() : 0);

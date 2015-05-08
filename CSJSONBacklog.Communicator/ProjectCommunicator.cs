@@ -91,9 +91,9 @@ namespace CSJSONBacklog.Communicator
         /// Returns information about Wiki page.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-wiki"/>
-        public WikiPage GetWikiPage(int wikiId)
+        public WikiPage GetWikiPage(string projectIdOrKey, int wikiId)
         {
-            return GetT<WikiPage>(string.Format("https://{0}.backlog.jp/api/v2/wikis/{1}?apiKey={2}", SpaceKey, wikiId, ApiKey));
+            return GetT<WikiPage>(string.Format("https://{0}.backlog.jp/api/v2/wikis/{1}?projectIdOrKey={2}&apiKey={3}", SpaceKey, wikiId, projectIdOrKey, ApiKey));
         }
         #endregion Project Wiki
 

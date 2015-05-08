@@ -375,8 +375,8 @@ namespace CSJSONBacklogTest
 
 
         /// <summary>
-        ///GetVersionList
-        ///</summary>
+        /// GetWikiPageList
+        /// </summary>
         [TestMethod]
         public void GetWikiPageListTest()
         {
@@ -394,8 +394,12 @@ namespace CSJSONBacklogTest
             var target = new ProjectCommunicator(SpaceKey, APIKey);
             var source = target.GetWikiPageList(TestData.ProjectIdOrKey).ToList();
             Assert.AreNotEqual(source.Count(), 0);
-            var expect = source.First();
-            var actual = target.GetWikiPage(expect.Id);
+
+            var proj = target.GetProject(TestData.ProjectIdOrKey);
+            var expect = source.LastOrDefault(x => x.ProjectId.Equals(proj.Id));
+            Assert.IsNotNull(expect);
+
+            var actual = target.GetWikiPage(TestData.ProjectIdOrKey, expect.Id);
             Assert.AreEqual(expect, actual);
         }
     }
