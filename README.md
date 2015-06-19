@@ -5,6 +5,8 @@ CSJSONBacklog is a library of Backlog API v2 written in C#.
 *   http://www.backlog.jp/
 *   http://developer.nulab-inc.com/docs/
 
+NuGet package is available! https://www.nuget.org/packages/CSJSONBacklog/
+
 ## Features of CSJSONBacklog
 
 Development is in step by step progress.
