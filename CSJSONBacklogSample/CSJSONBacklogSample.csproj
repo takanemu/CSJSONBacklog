@@ -68,20 +68,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CSJSONBacklog.API\CSJSONBacklog.API.csproj">
-      <Project>{070ECDAB-9987-4869-A070-957D347C3C22}</Project>
-      <Name>CSJSONBacklog.API</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CSJSONBacklog.Communicator\CSJSONBacklog.Communicator.csproj">
-      <Project>{85A95BAF-6E31-459A-A8D6-C19E999BBD23}</Project>
-      <Name>CSJSONBacklog.Communicator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\CSJSONBacklog.Model\CSJSONBacklog.Model.csproj">
-      <Project>{2C301918-FDB7-4F39-9840-7B5EFC992E43}</Project>
-      <Name>CSJSONBacklog.Model</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -89,6 +75,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CSJSONBacklog\CSJSONBacklog.csproj">
+      <Project>{74EC8B3C-6CF4-4B82-9E20-88128A05150A}</Project>
+      <Name>CSJSONBacklog</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

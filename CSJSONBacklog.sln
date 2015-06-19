@@ -1,12 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSJSONBacklog.Model", "CSJSONBacklog.Model\CSJSONBacklog.Model.csproj", "{2C301918-FDB7-4F39-9840-7B5EFC992E43}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSJSONBacklog.Communicator", "CSJSONBacklog.Communicator\CSJSONBacklog.Communicator.csproj", "{85A95BAF-6E31-459A-A8D6-C19E999BBD23}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSJSONBacklog.API", "CSJSONBacklog.API\CSJSONBacklog.API.csproj", "{070ECDAB-9987-4869-A070-957D347C3C22}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSJSONBacklogSample", "CSJSONBacklogSample\CSJSONBacklogSample.csproj", "{CB5BF00E-CE2C-4601-AB81-509B3F65393E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FAA72AA7-C14B-4141-9499-ED9C659D8F48}"
@@ -25,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSJSONBacklog", "CSJSONBacklog\CSJSONBacklog.csproj", "{74EC8B3C-6CF4-4B82-9E20-88128A05150A}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = CSJSONBacklog.vsmdi
@@ -34,18 +30,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2C301918-FDB7-4F39-9840-7B5EFC992E43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C301918-FDB7-4F39-9840-7B5EFC992E43}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C301918-FDB7-4F39-9840-7B5EFC992E43}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C301918-FDB7-4F39-9840-7B5EFC992E43}.Release|Any CPU.Build.0 = Release|Any CPU
-		{85A95BAF-6E31-459A-A8D6-C19E999BBD23}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{85A95BAF-6E31-459A-A8D6-C19E999BBD23}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{85A95BAF-6E31-459A-A8D6-C19E999BBD23}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{85A95BAF-6E31-459A-A8D6-C19E999BBD23}.Release|Any CPU.Build.0 = Release|Any CPU
-		{070ECDAB-9987-4869-A070-957D347C3C22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{070ECDAB-9987-4869-A070-957D347C3C22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{070ECDAB-9987-4869-A070-957D347C3C22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{070ECDAB-9987-4869-A070-957D347C3C22}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CB5BF00E-CE2C-4601-AB81-509B3F65393E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB5BF00E-CE2C-4601-AB81-509B3F65393E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB5BF00E-CE2C-4601-AB81-509B3F65393E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -54,6 +38,10 @@ Global
 		{910A8C7A-6D95-4287-A528-6D6815DC158B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{910A8C7A-6D95-4287-A528-6D6815DC158B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{910A8C7A-6D95-4287-A528-6D6815DC158B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74EC8B3C-6CF4-4B82-9E20-88128A05150A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74EC8B3C-6CF4-4B82-9E20-88128A05150A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74EC8B3C-6CF4-4B82-9E20-88128A05150A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74EC8B3C-6CF4-4B82-9E20-88128A05150A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
