@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <licenseUrl>https://raw.githubusercontent.com/mtaniuchi/CSJSONBacklog/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/mtaniuchi/CSJSONBacklog</projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <copyright>$Copyright$</copyright>
+    <tags></tags>
+  </metadata>
+</package>
