@@ -138,6 +138,18 @@ namespace CSJSONBacklogSample
                     Debug.WriteLine("\t" + customField);
                 }
 
+                // project recent updates
+                ActivityQuery query = new ActivityQuery();
+
+                query.activitieTypes = new List<ActivitieType> { ActivitieType.IssueCreated, ActivitieType.IssueUpdated };
+                query.count = 3;
+
+                var projectRecentUpdateList = projectCommunicator.GetProjectRecentUpdateList(project.ProjectKey, query);
+                foreach (var projectRecentUpdate in projectRecentUpdateList)
+                {
+                    Debug.WriteLine("\t" + projectRecentUpdate);
+                }
+
 #if false // TODO:{"errors":[{"message":"Authentication failure.","code":11,"moreInfo":""}]}
                 // git repositories
                 var repos = projectCommunicator.GetListofGitRepositories(project.ProjectKey);
