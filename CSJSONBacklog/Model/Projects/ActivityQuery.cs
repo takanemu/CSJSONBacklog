@@ -44,7 +44,7 @@ namespace CSJSONBacklog.Model.Projects
 
         public string GetParametersForAPI()
         {
-            var parameters = string.Format("order={0}", order) + string.Format("&count={0}", count);
+            var parameters = string.Format("order={0}&count={1}", order, count);
 
             if (minId > 0)
             {
