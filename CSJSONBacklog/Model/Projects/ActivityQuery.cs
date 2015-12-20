@@ -44,7 +44,6 @@ namespace CSJSONBacklog.Model.Projects
 
         public string GetParametersForAPI()
         {
-            //TODO: use RestSharp
             var parameters = string.Format("order={0}", order) + string.Format("&count={0}", count);
 
             if (minId > 0)
