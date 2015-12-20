@@ -141,7 +141,7 @@ namespace CSJSONBacklogSample
                 // project recent updates
                 ActivityQuery query = new ActivityQuery();
 
-                query.activitieTypes = new List<ActivitieType> { ActivitieType.IssueCreated, ActivitieType.IssueUpdated };
+                query.activitieTypes = new List<ActivityType> { ActivityType.IssueCreated, ActivityType.IssueUpdated };
                 query.count = 3;
 
                 var projectRecentUpdateList = projectCommunicator.GetProjectRecentUpdateList(project.ProjectKey, query);

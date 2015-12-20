@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace CSJSONBacklog.Model.Projects
 {
-    public class Activitie
+    public class Activity
     {
         public int Id { get; set; }
         public Project Project { get; set; }
-        public ActivitieType Type { get; set; }
+        public ActivityType Type { get; set; }
         public Content Content { get; set; }
         public List<Notification> Notifications { get; set; }
         public User CreatedUser { get; set; }
@@ -22,7 +22,7 @@ namespace CSJSONBacklog.Model.Projects
         }
     }
 
-    public enum ActivitieType
+    public enum ActivityType
     {
         IssueCreated = 1,
         IssueUpdated = 2,

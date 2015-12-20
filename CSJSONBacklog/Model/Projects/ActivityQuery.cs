@@ -14,7 +14,7 @@ namespace CSJSONBacklog.Model.Projects
         /// <summary>
         /// number of activity TypeId list to type(1-17)
         /// </summary>
-        public IEnumerable<ActivitieType> activitieTypes { get; set; }
+        public IEnumerable<ActivityType> activitieTypes { get; set; }
 
         /// <summary>
         /// minimum ID
@@ -35,7 +35,7 @@ namespace CSJSONBacklog.Model.Projects
 
         public ActivityQuery()
         {
-            activitieTypes = new List<ActivitieType>();
+            activitieTypes = new List<ActivityType>();
             minId = 0;
             maxId = 0;
             count = 20;
