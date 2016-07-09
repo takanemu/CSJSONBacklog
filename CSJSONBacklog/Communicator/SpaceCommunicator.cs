@@ -33,11 +33,21 @@ namespace CSJSONBacklog.Communicator
         /// <summary>
         /// Returns list of groups in your space.
         /// </summary>
-        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-group"/>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/v2/groups"/>
         public IEnumerable<Group> GetGroupList()
         {
             return GetT<IEnumerable<Group>>(string.Format("https://{0}.backlog.jp/api/v2/groups?apiKey={1}", SpaceKey, ApiKey));
         }
+
+        /// <summary>
+        /// Returns list of groups in your space.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/v2/groups"/>
+        public IEnumerable<Group> GetGroupList(SpaceQuery param)
+        {
+            var query = string.Format("https://{0}.backlog.jp/api/v2/groups?apiKey={1}&{2}", SpaceKey, ApiKey, param.GetParametersForAPI());
+
+            return GetT<IEnumerable<Group>>(string.Format("https://{0}.backlog.jp/api/v2/groups?apiKey={1}&{2}", SpaceKey, ApiKey, param.GetParametersForAPI()));
+        }
     }
 }
-

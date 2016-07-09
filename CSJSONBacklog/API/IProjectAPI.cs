@@ -91,7 +91,8 @@ namespace CSJSONBacklog.API
         /// Returns recent update in the project.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-project-activities"/>
-        IEnumerable<Activity> GetProjectRecentUpdateList(string projectIdOrKey, ActivityQuery query);
+        //object GetProjectRecentUpdate();
+        IEnumerable<Activitie> GetProjectRecentUpdates(string projectIdOrKey);
         /// <summary>
         /// Returns list of projects which the user viewed recently.
         /// </summary>
