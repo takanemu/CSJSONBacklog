@@ -20,10 +20,23 @@ namespace CSJSONBacklog.Communicator
         /// <summary>
         /// Returns list of projects.
         /// </summary>
-        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-projects"/>
-        public IEnumerable<Project> GetProjectList()
+        /// <param name="archived"></param>
+        /// <param name="all"></param>
+        /// <returns></returns>
+        public IEnumerable<Project> GetProjectList(bool all = false)
         {
-            return GetT<IEnumerable<Project>>(string.Format("https://{0}.backlog.jp/api/v2/projects?apiKey={1}", SpaceKey, ApiKey));
+            return GetT<IEnumerable<Project>>(string.Format("https://{0}.backlog.jp/api/v2/projects?apiKey={1}&all={2}", SpaceKey, ApiKey, all.ToString().ToLower()));
+        }
+
+        /// <summary>
+        /// Returns list of projects.
+        /// </summary>
+        /// <param name="archived"></param>
+        /// <param name="all"></param>
+        /// <returns></returns>
+        public IEnumerable<Project> GetProjectList(bool archived, bool all = false)
+        {
+            return GetT<IEnumerable<Project>>(string.Format("https://{0}.backlog.jp/api/v2/projects?apiKey={1}&archived={2}&all={3}", SpaceKey, ApiKey, archived.ToString().ToLower(), all.ToString().ToLower()));
         }
 
         /// <summary>

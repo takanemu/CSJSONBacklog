@@ -14,7 +14,13 @@ namespace CSJSONBacklog.API
         /// Returns list of projects.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-projects"/>
-        IEnumerable<Project> GetProjectList();
+        IEnumerable<Project> GetProjectList(bool all = false);
+
+        /// <summary>
+        /// Returns list of projects.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-projects"/>
+        IEnumerable<Project> GetProjectList(bool archived, bool all = false);
 
         /// <summary>
         /// Returns information about project.
