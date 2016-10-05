@@ -22,7 +22,7 @@ namespace CSJSONBacklog.API
         /// <summary>
         /// Returns list of groups in your space.
         /// </summary>
-        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-group"/>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/v2/groups"/>
         IEnumerable<Group> GetGroupList();
     }
 }

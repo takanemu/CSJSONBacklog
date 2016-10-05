@@ -81,6 +81,7 @@
     <Compile Include="Model\Issues\SharedFile.cs" />
     <Compile Include="Model\Issues\Star.cs" />
     <Compile Include="Model\Issues\Status.cs" />
+    <Compile Include="Model\Projects\Activitie.cs" />
     <Compile Include="Model\Projects\Activity.cs" />
     <Compile Include="Model\Projects\ActivityQuery.cs" />
     <Compile Include="Model\Projects\Category.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Model\Space\Group.cs" />
     <Compile Include="Model\Space\Notification.cs" />
     <Compile Include="Model\Space\Space.cs" />
+    <Compile Include="Model\Space\SpaceQuery.cs" />
     <Compile Include="Model\Space\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -22,6 +22,21 @@ namespace CSJSONBacklogSample
             _apiKey = apiKey;
         }
 
+        public IEnumerable<User> GetSpaceUsers()
+        {
+            var spaceCommunicator = new SpaceCommunicator(_spaceName, _apiKey);
+            var users = spaceCommunicator.GetUserList().ToList();
+
+            return users;
+        }
+
+        public IEnumerable<Group> GetSpageGroups()
+        {
+            var spaceCommunicator = new SpaceCommunicator(_spaceName, _apiKey);
+            var groups = spaceCommunicator.GetGroupList().ToList();
+
+            return groups;
+        }
 
         /// <summary>
         /// get all project info in space
@@ -32,16 +47,6 @@ namespace CSJSONBacklogSample
             var projectCommunicator = new ProjectCommunicator(_spaceName, _apiKey);
             var projects = projectCommunicator.GetProjectList().ToList();
             return projects;
-        }
-
-        /// <summary>
-        /// get all group info in space
-        /// </summary>
-        public IEnumerable<Group> GetGroups()
-        {
-            var spaceCommunicator = new SpaceCommunicator(_spaceName, _apiKey);
-            var groups = spaceCommunicator.GetGroupList().ToList();
-            return groups;
         }
 
         /// <summary>
@@ -94,8 +99,8 @@ namespace CSJSONBacklogSample
                 Debug.WriteLine(project);
 
                 // disk usage
-                var usage = projectCommunicator.GetProjectDiskUsage(project.ProjectKey);
-                Debug.WriteLine("\t" + usage);
+                //var usage = projectCommunicator.GetProjectDiskUsage(project.ProjectKey);
+                //Debug.WriteLine("\t" + usage);
 
                 // project user
                 var users = projectCommunicator.GetProjectUserList(project.ProjectKey);
@@ -104,51 +109,39 @@ namespace CSJSONBacklogSample
                     Debug.WriteLine("\t" + user);
                 }
 
-                var admins = projectCommunicator.GetProjectAdministratorList(project.ProjectKey);
-                foreach (var user in admins)
-                {
-                    Debug.WriteLine("\t" + user);
-                }
+                //var admins = projectCommunicator.GetProjectAdministratorList(project.ProjectKey);
+                //foreach (var user in admins)
+                //{
+                //    Debug.WriteLine("\t" + user);
+                //}
 
                 // issue types
-                var issueTypes = projectCommunicator.GetIssueTypeList(project.ProjectKey);
-                foreach (var issueType in issueTypes)
-                {
-                    Debug.WriteLine("\t" + issueType);
-                }
+                //var issueTypes = projectCommunicator.GetIssueTypeList(project.ProjectKey);
+                //foreach (var issueType in issueTypes)
+                //{
+                //    Debug.WriteLine("\t" + issueType);
+                //}
 
                 // categories
-                var categories = projectCommunicator.GetCategoryList(project.ProjectKey);
-                foreach (var category in categories)
-                {
-                    Debug.WriteLine("\t" + category);
-                }
+                //var categories = projectCommunicator.GetCategoryList(project.ProjectKey);
+                //foreach (var category in categories)
+                //{
+                //    Debug.WriteLine("\t" + category);
+                //}
 
                 // version
-                var versions = projectCommunicator.GetVersionList(project.ProjectKey);
-                foreach (var version in versions)
-                {
-                    Debug.WriteLine("\t" + version);
-                }
+                //var versions = projectCommunicator.GetVersionList(project.ProjectKey);
+                //foreach (var version in versions)
+                //{
+                //    Debug.WriteLine("\t" + version);
+                //}
 
                 // custom fields
-                var customFieldList = projectCommunicator.GetCustomFieldList(project.ProjectKey);
-                foreach (var customField in customFieldList)
-                {
-                    Debug.WriteLine("\t" + customField);
-                }
-
-                // project recent updates
-                ActivityQuery query = new ActivityQuery();
-
-                query.activitieTypes = new List<ActivityType> { ActivityType.IssueCreated, ActivityType.IssueUpdated };
-                query.count = 3;
-
-                var projectRecentUpdateList = projectCommunicator.GetProjectRecentUpdateList(project.ProjectKey, query);
-                foreach (var projectRecentUpdate in projectRecentUpdateList)
-                {
-                    Debug.WriteLine("\t" + projectRecentUpdate);
-                }
+                //var customFieldList = projectCommunicator.GetCustomFieldList(project.ProjectKey);
+                //foreach (var customField in customFieldList)
+                //{
+                //    Debug.WriteLine("\t" + customField);
+                //}
 
 #if false // TODO:{"errors":[{"message":"Authentication failure.","code":11,"moreInfo":""}]}
                 // git repositories
