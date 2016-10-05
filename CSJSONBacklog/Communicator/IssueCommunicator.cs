@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using CSJSONBacklog.API;
 using CSJSONBacklog.Model.Issues;
 using CSJSONBacklog.Model.Space;
+using System.Net;
+using System.IO;
 
 namespace CSJSONBacklog.Communicator
 {
@@ -81,10 +83,23 @@ namespace CSJSONBacklog.Communicator
             return GetT<IEnumerable<Comment>>(uri);
         }
 
+        /// <summary>
+        /// Download issue attachment file.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issue-attachment"/>
+        public void DownloadAttachmentFile(string path, string issueKey, string filename, int issueIdOrKey, int attachmentId)
+        {
+            var uri = string.Format("https://{0}.backlog.jp/api/v2/issues/{1}/attachments/{2}?apiKey={3}", SpaceKey, issueIdOrKey, attachmentId, ApiKey);
 
-
-
-
+            if (!Directory.Exists(Path.Combine(path, issueKey)))
+            {
+                Directory.CreateDirectory(Path.Combine(path, issueKey));
+            }
+            using (var client = new WebClient())
+            {
+                client.DownloadFile(uri, Path.Combine(path, Path.Combine(issueKey, filename)));
+            }
+        }
 
         /// <summary>
         /// Returns list of statuses.

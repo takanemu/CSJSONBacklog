@@ -38,7 +38,11 @@ namespace CSJSONBacklog.API
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-comments"/>
         IEnumerable<Comment> GetCommentList(string issueIdOrKey, CommentQuery query);
 
-
+        /// <summary>
+        /// Download issue attachment file.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/get-issue-attachment"/>
+        void DownloadAttachmentFile(string path, string issueKey, string filename, int issueIdOrKey, int attachmentId);
 
         /// <summary>
         /// Returns list of statuses.
