@@ -24,5 +24,11 @@ namespace CSJSONBacklog.API
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/v2/groups"/>
         IEnumerable<Group> GetGroupList();
+
+        /// <summary>
+        /// Deletes user from the space.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/delete-user"/>
+        User DeleteUser(int userId);
     }
 }

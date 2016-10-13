@@ -49,5 +49,14 @@ namespace CSJSONBacklog.Communicator
 
             return GetT<IEnumerable<Group>>(string.Format("https://{0}.backlog.jp/api/v2/groups?apiKey={1}&{2}", SpaceKey, ApiKey, param.GetParametersForAPI()));
         }
+
+        /// <summary>
+        /// Deletes user from the space.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/delete-user"/>
+        public User DeleteUser(int userId)
+        {
+            return DeleteT<User>(string.Format("https://{0}.backlog.jp/api/v2/users/{2}?apiKey={1}", SpaceKey, ApiKey, userId));
+        }
     }
 }

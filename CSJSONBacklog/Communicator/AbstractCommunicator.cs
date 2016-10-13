@@ -80,5 +80,32 @@ namespace CSJSONBacklog.Communicator
             var result = JsonConvert.DeserializeObject<T>(content);
             return result;
         }
+
+        protected T DeleteT<T>(string uri)
+        {
+            var client = new RestClient(uri);
+            var request = new RestRequest(Method.DELETE)
+            {
+                RequestFormat = DataFormat.Json,
+            };
+
+            var response = client.Execute(request);
+            var content = response.Content;
+
+            T result = default(T);
+            try
+            {
+                result = JsonConvert.DeserializeObject<T>(content);
+            }
+            catch
+            {
+                var errors = JsonConvert.DeserializeObject<ErrorMessages>(content);
+                if (errors.HasError)
+                {
+                    throw new Exception(errors.ToString());
+                }
+            }
+            return result;
+        }
     }
 }
