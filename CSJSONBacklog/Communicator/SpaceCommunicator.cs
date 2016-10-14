@@ -51,6 +51,15 @@ namespace CSJSONBacklog.Communicator
         }
 
         /// <summary>
+        /// Deletes group.
+        /// </summary>
+        /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/delete-group"/>
+        public Group DeleteGroup(int groupId)
+        {
+            return DeleteT<Group>(string.Format("https://{0}.backlog.jp/api/v2/groups/{2}?apiKey={1}", SpaceKey, ApiKey, groupId));
+        }
+
+        /// <summary>
         /// Deletes user from the space.
         /// </summary>
         /// <see cref="http://developer.nulab-inc.com/docs/backlog/api/2/delete-user"/>
